@@ -1,0 +1,51 @@
+<div class="container">    
+
+  <div *ngIf="error" class="alert alert-danger" id="login-error">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Error!</strong> {{ errorMessage }}
+  </div>
+
+  <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
+      
+      <div class="row">                
+          <div class="iconmelon">
+            <svg viewBox="0 0 32 32">
+              <g filter="">
+                <use xlink:href="#git"></use>
+              </g>
+            </svg>
+          </div>
+      </div>
+      
+      <div class="panel panel-default" >
+          <div class="panel-heading">
+              <div class="panel-title text-center">iNCRediCabs Login</div>
+          </div>     
+
+          <div class="panel-body" >
+           
+              <form name="form"  #f="ngForm" (ngSubmit)="onSubmit(f.value)" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+                 
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                      <input id="user" type="text" class="form-control" name="qlid" value="" placeholder="QLID" [(ngModel)]="user.qlid">                                        
+                  </div>
+
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                      <input id="password" type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="user.password">
+                  </div>                                                                  
+
+                  <div class="form-group">
+                      <!-- Button -->
+                      <div class="col-sm-12 controls">
+                          <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>                          
+                      </div>
+                  </div>
+
+              </form>     
+
+          </div>                     
+      </div>  
+  </div>
+</div>

@@ -1,0 +1,422 @@
+<app-header></app-header>
+
+<div *ngIf="showSuccess" class="alert alert-success" id="login-success">
+  <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong><span innerHTML="message"></span>
+</div>
+<div *ngIf="showError" class="alert alert-danger" id="login-error">
+  <a href="" target="_self" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <table>
+    <tr>
+      <td class="col-sm-1"><strong>Error!</strong></td>
+      <td>
+          Employee couldn&apos;t be added to the database!
+          Check the form below for more details.
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="row">
+  <div id="edit-employee-form" class="col-sm-10 col-sm-offset-1">
+    <div col="col-sm-12">
+      <div class="listing form" ng-if="editDetails">
+        <legend>Edit Details for QLID: {{ emp.empQlid }}</legend>
+        <!-- <div class="panel-title">Edit Details for QLID: {{ emp.empQlid }}</div>       -->
+      </div>
+    </div>
+    <div>
+      <div *ngIf="emp" class="panel-body" class="col-sm-10 col-sm-offset-1">
+        <form  name="myForm" 
+        #f="ngForm" (ngSubmit)="onSave(f.value)" class="form-horizontal" role="form" >
+          <div class="form-group">
+              <!-- Input Field Labels -->
+              <div class="row">
+                <div class="col-sm-3">
+                  <div *ngIf="emp.empFName != null">
+                    <span class="input-label fadeIn">
+                      <strong>First Name<span class="imp">*</span></strong>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div *ngIf="emp.empMName != null">
+                    <span class="input-label">
+                      <strong>Middle Name</strong>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div *ngIf="emp.empLName != null">
+                    <span class="input-label">
+                      <strong>Last Name<span class="imp">*</span></strong>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            <!-- Input field row -->
+            <div class="row">
+              <!-- Employee First Name -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_FName" placeholder="First Name" maxlength="15"
+                  class="form-control" [(ngModel)]="emp.empFName">
+              </div>
+              <!-- Employee Middle Name -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_MName" placeholder="Middle Name" maxlength="15"
+                  class="form-control" [(ngModel)]="emp.empMName">
+              </div>
+              <!-- Employee Last Name -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_LName" placeholder="Last Name" maxlength="15"
+                  class="form-control" [(ngModel)]="emp.empLName">
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row">
+              <!-- Employee First Name Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empFName.error" class="text-danger form-error">
+                  {{ formError.empFName.message }}
+                </div>
+              </div>
+              <!-- Employee Middle Name Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empMName.error" class="text-danger form-error">
+                  {{ formError.empMName.message }}
+                </div>
+              </div>
+              <!-- Employee Last Name Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empLName.error" class="text-danger form-error">
+                  {{ formError.empLName.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="form-group">
+            <!-- Input Field Labels -->
+            <div class="row">
+              <div class="col-sm-3">
+                <div *ngIf="emp.empMob != null">
+                  <span class="input-label">
+                    <strong>Contact Number<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="emp.empGender != ''">
+                  <span class="input-label">
+                    <strong>Gender<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="emp.rolesId != ''">
+                  <span class="input-label">
+                    <strong>Role<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Input field row -->
+            <div class="row">
+              <!-- Employee Contact no -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_Mob" placeholder="Contact Number" maxlength="10"
+                  class="form-control" maxlength="10" [(ngModel)]="emp.empMob">
+              </div>   
+              <!-- Employee Gender -->
+              <div class="col-sm-3">
+                <select type="gender" name ="Emp_Gender" placeholder="Gender" class="form-control" [(ngModel)]="emp.empGender">
+                  <option value="" dsisabled selected>Gender</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select> 
+              </div>
+              <!-- Employee Role -->
+              <div class="col-sm-3">
+                <select type="role" name ="Roles_Id" placeholder="Role" class="form-control" [(ngModel)]="emp.rolesId">
+                  <option value="" dsisabled selected>Role</option>
+                  <option value="4">Employee</option>
+                  <option value="2">Manager</option>
+                  <option value="1">Transport Coordinator</option>
+                  <option value="0">Admin</option>
+                </select>
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row">
+              <!-- Employee Contact no Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empMob.error" class="text-danger form-error">
+                  {{ formError.empMob.message }}
+                </div>
+              </div>
+              <!-- Employee Gender Error -->          
+              <div class="col-sm-3">
+                <div *ngIf="formError.empGender.error" class="text-danger form-error">
+                  {{ formError.empGender.message }}
+                </div>
+              </div>
+              <!-- Employee Role Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.rolesId.error" class="text-danger form-error">
+                  {{ formError.rolesId.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <!-- Input Field Labels -->
+            <div class="row">
+              <div class="col-sm-3">
+                <div *ngIf="emp.empHome != null">
+                  <span class="input-label fadeIn">
+                    <strong>Home Phone</strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="emp.empEmergency != null">
+                  <span class="input-label">
+                    <strong>Emergency Phone Number<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="emp.empBloodGrp != null">
+                  <span class="input-label">
+                    <strong>Blood Group<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Input field row -->
+            <div class="row">
+              <!-- Home Phone No -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_Home" placeholder="Home Phone" maxlength="10"
+                  class="form-control" maxlength="10" [(ngModel)]="emp.empHome">
+              </div>
+              <!-- Emergency Phone No -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_Emergency" maxlength="10"
+                  placeholder="Emergency Phone Number" class="form-control" maxlength="10" [(ngModel)]="emp.empEmergency">
+              </div>
+              <!-- Blood Group -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_BloodGrp" maxlength="3"
+                  placeholder="Blood Group" class="form-control" [(ngModel)]="emp.empBloodGrp">
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row">
+              <!-- Home Phone No Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empHome.error" class="text-danger form-error">
+                  {{ formError.empHome.message }}
+                </div>
+              </div>
+              <!-- Emergency Phone No Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empEmergency.error" class="text-danger form-error">
+                  {{ formError.empEmergency.message }}
+                </div>
+              </div>
+              <!-- Blood Group Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empBloodGrp.error" class="text-danger form-error">
+                  {{ formError.empBloodGrp.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- Input Field Labels -->
+            <div class="row">
+              <div class="col-sm-3">
+                <div *ngIf="selectedManager != null">
+                  <span class="input-label fadeIn">
+                    <strong>Manager Name</strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="emp.mgrQlid != null">
+                  <span class="input-label">
+                    <strong>Manager QLID<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="emp.empStatus != null">
+                  <span class="input-label">
+                    <strong>Employee Status<span class="imp">*</span>
+                    </strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Input field row -->
+            <div class="row">
+            <!-- Manager Name -->
+              <div class="col-sm-3">
+                <!-- <input type="text" name="Mgr" placeholder="Manager Name" maxlength="8"
+                  class="form-control" [(ngModel)]="mgr"> -->
+                  <input list="manager-list" name="manager-name" placeholder="Manager Name" maxlength="100"              
+                    class="form-control" [(ngModel)]="selectedManager" (change) = "setManagerQlid($event.target.value)">
+                  <datalist id="manager-list">
+                      <option  *ngFor="let mgr of mgrArr" value="{{mgr.mgrFName}} {{mgr.mgrLName}} : {{mgr.mgrQlid}}"></option>
+                  </datalist>
+              </div>
+              <!-- Manager QLID -->
+              <div class="col-sm-3">
+                  <input type="text" name="Mgr_Qlid" placeholder="Manager QLID" maxlength="8"
+                    class="form-control" [(ngModel)]="emp.mgrQlid">
+              </div>
+              <div class="col-sm-3">
+                  <select name="Emp_Status" placeholder="Status" maxlength="8"
+                    class="form-control" [(ngModel)]="emp.empStatus">
+                    <option value="" disabled selected>Status</option>
+                    <option value="A">Active</option>
+                    <option value="I">Inactive</option>
+                  </select>
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row">
+              <!-- Manager QLID Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.mgrQlid.error" class="text-danger form-error">
+                  {{ formError.mgrQlid.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+    <!-- Address Section -->
+          <!-- Employee Address Details -->
+          <legend>Address Details</legend>
+          <div class="form-group">
+            <!-- Input Field Labels -->
+            <div class="row">
+              <div class="col-sm-3">
+                <div *ngIf="emp.empAddress1 != null">
+                  <span class="input-label">
+                    <strong>Address Line 1<span class="imp">*</span>
+                    </strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Input field row -->
+            <div class="row">
+              <!-- Employee Address Line 1 -->
+              <div class="col-sm-9">
+                <input type="text" name="Emp_Address1" maxlength="100"
+                  placeholder="Address Line 1" class="form-control" [(ngModel)]="emp.empAddress1">
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row">
+              <!-- Employee Address Line 1 Error -->
+              <div class="col-sm-9">
+                <div *ngIf="formError.empAddress1.error" class="text-danger form-error">
+                  {{ formError.empAddress1.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+          <!-- Input field row -->
+            <!-- Input Field Labels -->
+            <div class="row">
+              <div class="col-sm-3">
+                <div *ngIf="emp.empAddress2 != null">
+                  <span class="input-label">
+                    <strong>Address Line 2<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Employee Address Line 2 -->
+              <div class="col-sm-9">
+                <input type="text" name="Emp_Address2" maxlength="100"
+                  placeholder="Address Line 2" class="form-control" [(ngModel)]="emp.empAddress2">
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row">
+              <!-- Employee Address Line 2 Error -->
+              <div class="col-sm-9">
+                <div *ngIf="formError.empAddress2.error" class="text-danger form-error">
+                  {{ formError.empAddress2.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- Input Field Labels -->
+            <div class="row">
+              <div class="col-sm-3">
+                <div *ngIf="emp.empPin != null">
+                  <span class="input-label fadeIn">
+                    <strong>Postal Code (PIN)<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="emp.empPickup != null">
+                  <span class="input-label fadeIn">
+                    <strong>Pickup Area<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Input field row -->
+            <div class="row">
+              <!-- Employee Postal Code (PIN) -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_PIN" maxlength="6"
+                  placeholder="Postal Code (PIN)" class="form-control" [(ngModel)]="emp.empPin">
+              </div>
+              <!-- Employee Pickup Location -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_Pickup" maxlength="20"
+                  placeholder="Pickup Location" class="form-control" [(ngModel)]="emp.empPickup">
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row">
+              <!-- Employee Postal Code (PIN) Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empPin.error" class="text-danger form-error">
+                  {{ formError.empPin.message }}
+                </div>
+              </div>
+              <!-- Employee Pickup Location Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empPickup.error" class="text-danger form-error">
+                  {{ formError.empPickup.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Additional Information -->
+          <!-- <legend>Additional Information</legend> -->
+            
+    <!-- Command -->
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-0">          
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-basic" (click)="onClickBack()">Back</button>          
+            </div>
+          </div>
+          <!-- </fieldset> -->
+        </form>
+        </div>
+      </div>
+    </div> 
+  </div>

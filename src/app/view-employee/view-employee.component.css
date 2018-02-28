@@ -1,0 +1,73 @@
+.emp-list-link{
+    cursor: pointer;
+}
+
+.emp-list-link:hover{
+    text-decoration: none;
+    color: #0000ff;
+}
+
+#filter-title{
+    display: inline-block;
+    margin: 0px;
+}
+
+#filter-panel{
+    margin-bottom: 8px;
+}
+
+#filter-panel .panel-body{
+    padding: 0px;
+}
+
+#view-employee{
+    overflow: auto;
+    height: 500px;
+}
+
+#filter-panel .form-group{
+    margin-bottom: 8px;
+}
+
+.panel-info{
+    margin-bottom: 5px;
+}
+
+.panel-heading{
+    padding: 4px 4px 4px 15px;
+}
+
+.emp-panel-body{
+    padding: 5px;
+}
+
+.view-employee-row-table tr td strong{
+    padding-right: 15px;
+}
+
+.emp-quick-details{
+    display: none;
+}
+
+.tooltip-text{
+    display: none;
+    position: absolute;
+    background: #000000;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-weight: bold;
+    z-index: 1;
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
