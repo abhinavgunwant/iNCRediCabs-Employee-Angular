@@ -17,7 +17,7 @@
   </table>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="emp">
   <div id="edit-employee-form" class="col-sm-10 col-sm-offset-1">
     <div col="col-sm-12">
       <div class="listing form" ng-if="editDetails">
@@ -27,8 +27,8 @@
     </div>
     <div>
       <div *ngIf="emp" class="panel-body" class="col-sm-10 col-sm-offset-1">
-        <form  name="myForm" 
-        #f="ngForm" (ngSubmit)="onSave(f.value)" class="form-horizontal" role="form" >
+        <form  name="myForm" #f="ngForm" (ngSubmit)="onSave(f.value)"
+          class="form-horizontal" role="form" >
           <div class="form-group">
               <!-- Input Field Labels -->
               <div class="row">
@@ -98,7 +98,7 @@
             <!-- Input Field Labels -->
             <div class="row">
               <div class="col-sm-3">
-                <div *ngIf="emp.empMob != null">
+                <div *ngIf="emp.empMobNbr != null">
                   <span class="input-label">
                     <strong>Contact Number<span class="imp">*</span></strong>
                   </span>
@@ -124,11 +124,12 @@
               <!-- Employee Contact no -->
               <div class="col-sm-3">
                 <input type="text" name="Emp_Mob" placeholder="Contact Number" maxlength="10"
-                  class="form-control" maxlength="10" [(ngModel)]="emp.empMob">
+                  class="form-control" maxlength="10" [(ngModel)]="emp.empMobNbr">
               </div>   
               <!-- Employee Gender -->
               <div class="col-sm-3">
-                <select type="gender" name ="Emp_Gender" placeholder="Gender" class="form-control" [(ngModel)]="emp.empGender">
+                <select type="gender" name ="Emp_Gender" placeholder="Gender" class="form-control"
+                  [(ngModel)]="emp.empGender">
                   <option value="" dsisabled selected>Gender</option>
                   <option value="M">Male</option>
                   <option value="F">Female</option>
@@ -136,12 +137,14 @@
               </div>
               <!-- Employee Role -->
               <div class="col-sm-3">
-                <select type="role" name ="Roles_Id" placeholder="Role" class="form-control" [(ngModel)]="emp.rolesId">
+                <select type="role" name ="Roles_Id" placeholder="Role" class="form-control"
+                  [(ngModel)]="emp.rolesId">
                   <option value="" dsisabled selected>Role</option>
-                  <option value="4">Employee</option>
+                  <option value="5">Intern</option>
+                  <option value="4">Contractor</option>
+                  <option value="3">Employee</option>
                   <option value="2">Manager</option>
-                  <option value="1">Transport Coordinator</option>
-                  <option value="0">Admin</option>
+                  <option value="1">Admin</option>
                 </select>
               </div>
             </div>
@@ -149,8 +152,8 @@
             <div class="row">
               <!-- Employee Contact no Error -->
               <div class="col-sm-3">
-                <div *ngIf="formError.empMob.error" class="text-danger form-error">
-                  {{ formError.empMob.message }}
+                <div *ngIf="formError.empMobNbr.error" class="text-danger form-error">
+                  {{ formError.empMobNbr.message }}
                 </div>
               </div>
               <!-- Employee Gender Error -->          
@@ -171,14 +174,14 @@
             <!-- Input Field Labels -->
             <div class="row">
               <div class="col-sm-3">
-                <div *ngIf="emp.empHome != null">
+                <div *ngIf="emp.empHomeNbr != null">
                   <span class="input-label fadeIn">
                     <strong>Home Phone</strong>
                   </span>
                 </div>
               </div>
               <div class="col-sm-3">
-                <div *ngIf="emp.empEmergency != null">
+                <div *ngIf="emp.empEmergNbr  != null">
                   <span class="input-label">
                     <strong>Emergency Phone Number<span class="imp">*</span></strong>
                   </span>
@@ -196,13 +199,14 @@
             <div class="row">
               <!-- Home Phone No -->
               <div class="col-sm-3">
-                <input type="text" name="Emp_Home" placeholder="Home Phone" maxlength="10"
-                  class="form-control" maxlength="10" [(ngModel)]="emp.empHome">
+                <input type="text" name="Emp_Home_Nbr" placeholder="Home Phone" maxlength="10"
+                  class="form-control" maxlength="10" [(ngModel)]="emp.empHomeNbr">
               </div>
               <!-- Emergency Phone No -->
               <div class="col-sm-3">
-                <input type="text" name="Emp_Emergency" maxlength="10"
-                  placeholder="Emergency Phone Number" class="form-control" maxlength="10" [(ngModel)]="emp.empEmergency">
+                <input type="text" name="Emp_Emerg_Nbr" maxlength="10"
+                  placeholder="Emergency Phone Number" class="form-control" maxlength="10"
+                  [(ngModel)]="emp.empEmergNbr">
               </div>
               <!-- Blood Group -->
               <div class="col-sm-3">
@@ -214,14 +218,14 @@
             <div class="row">
               <!-- Home Phone No Error -->
               <div class="col-sm-3">
-                <div *ngIf="formError.empHome.error" class="text-danger form-error">
-                  {{ formError.empHome.message }}
+                <div *ngIf="formError.empHomeNbr.error" class="text-danger form-error">
+                  {{ formError.empHomeNbr.message }}
                 </div>
               </div>
               <!-- Emergency Phone No Error -->
               <div class="col-sm-3">
-                <div *ngIf="formError.empEmergency.error" class="text-danger form-error">
-                  {{ formError.empEmergency.message }}
+                <div *ngIf="formError.empEmergNbr.error" class="text-danger form-error">
+                  {{ formError.empEmergNbr.message }}
                 </div>
               </div>
               <!-- Blood Group Error -->
@@ -236,19 +240,100 @@
             <!-- Input Field Labels -->
             <div class="row">
               <div class="col-sm-3">
-                <div *ngIf="selectedManager != null">
+                <div *ngIf="selectedManager1 != null">
                   <span class="input-label fadeIn">
-                    <strong>Manager Name</strong>
+                    <strong>L1 Manager Name</strong>
                   </span>
                 </div>
               </div>
               <div class="col-sm-3">
-                <div *ngIf="emp.mgrQlid != null">
+                <div *ngIf="emp.empMgrQlid1 != null">
                   <span class="input-label">
-                    <strong>Manager QLID<span class="imp">*</span></strong>
+                    <strong>L1 Manager QLID<span class="imp">*</span></strong>
                   </span>
                 </div>
               </div>
+            </div>
+            <!-- Input field row -->
+            <div class="row">
+            <!-- Manager Name -->
+              <div class="col-sm-3">
+                <!-- <input type="text" name="Mgr" placeholder="Manager Name" maxlength="8"
+                  class="form-control" [(ngModel)]="mgr"> -->
+                  <input list="manager-list" name="manager-name" placeholder="L1 Manager Name"
+                    maxlength="100" class="form-control" [(ngModel)]="selectedManager1"
+                    (change) = "setManagerQlid1($event.target.value)">
+                  <datalist *ngIf="mgrArr != null" id="manager-list">
+                      <option *ngFor="let mgr of mgrArr"
+                        value="{{mgr.mgrFName}} {{mgr.mgrLName}} : {{mgr.mgrQlid}}"></option>
+                  </datalist>
+              </div>
+              <!-- Manager QLID -->
+              <div class="col-sm-3">
+                  <input type="text" name="Emp_Mgr_Qlid1" placeholder="L1 Manager QLID"
+                    maxlength="8" class="form-control" [(ngModel)]="emp.empMgrQlid1">
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row">
+              <!-- Manager QLID Error -->
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="formError.empMgrQlid1.error" class="text-danger form-error">
+                  {{ formError.empMgrQlid1.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- Input Field Labels -->
+            <div class="row">
+              <div class="col-sm-3">
+                <div *ngIf="selectedManager2 != null">
+                  <span class="input-label fadeIn">
+                    <strong>L2 Manager Name</strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="emp.empMgrQlid2 != null">
+                  <span class="input-label">
+                    <strong>L2 Manager QLID<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Input field row -->
+            <div class="row">
+            <!-- Manager Name -->
+              <div class="col-sm-3">
+                <input list="manager-list" name="manager-name" placeholder="L2 Manager Name"
+                  maxlength="100" class="form-control" [(ngModel)]="selectedManager2"
+                  (change) = "setManagerQlid2($event.target.value)">
+                <datalist *ngIf="mgrArr != null" id="manager-list">
+                    <option *ngFor="let mgr of mgrArr"
+                      value="{{mgr.mgrFName}} {{mgr.mgrLName}} : {{mgr.mgrQlid}}"></option>
+                </datalist>
+              </div>
+              <!-- Manager QLID -->
+              <div class="col-sm-3">
+                  <input type="text" name="Mgr_Qlid" placeholder="L2 Manager QLID"
+                    maxlength="8" class="form-control" [(ngModel)]="emp.empMgrQlid2">
+              </div>
+            </div>
+            <!-- Error row -->
+            <div class="row" *ngIf="formError.empMgrQlid2 != null">
+              <!-- Manager QLID Error -->
+              <div class="col-sm-3">
+                <div *ngIf="formError.empMgrQlid2.error" class="text-danger form-error">
+                  {{ formError.empMgrQlid2.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
               <div class="col-sm-3">
                 <div *ngIf="emp.empStatus != null">
                   <span class="input-label">
@@ -260,21 +345,6 @@
             </div>
             <!-- Input field row -->
             <div class="row">
-            <!-- Manager Name -->
-              <div class="col-sm-3">
-                <!-- <input type="text" name="Mgr" placeholder="Manager Name" maxlength="8"
-                  class="form-control" [(ngModel)]="mgr"> -->
-                  <input list="manager-list" name="manager-name" placeholder="Manager Name" maxlength="100"              
-                    class="form-control" [(ngModel)]="selectedManager" (change) = "setManagerQlid($event.target.value)">
-                  <datalist id="manager-list">
-                      <option  *ngFor="let mgr of mgrArr" value="{{mgr.mgrFName}} {{mgr.mgrLName}} : {{mgr.mgrQlid}}"></option>
-                  </datalist>
-              </div>
-              <!-- Manager QLID -->
-              <div class="col-sm-3">
-                  <input type="text" name="Mgr_Qlid" placeholder="Manager QLID" maxlength="8"
-                    class="form-control" [(ngModel)]="emp.mgrQlid">
-              </div>
               <div class="col-sm-3">
                   <select name="Emp_Status" placeholder="Status" maxlength="8"
                     class="form-control" [(ngModel)]="emp.empStatus">
@@ -285,11 +355,11 @@
               </div>
             </div>
             <!-- Error row -->
-            <div class="row">
+            <div class="row" *ngIf="formError.empStatus != null">
               <!-- Manager QLID Error -->
               <div class="col-sm-3">
-                <div *ngIf="formError.mgrQlid.error" class="text-danger form-error">
-                  {{ formError.mgrQlid.message }}
+                <div *ngIf="formError.empStatus.error" class="text-danger form-error">
+                  {{ formError.empStatus.message }}
                 </div>
               </div>
             </div>
@@ -302,7 +372,7 @@
             <!-- Input Field Labels -->
             <div class="row">
               <div class="col-sm-3">
-                <div *ngIf="emp.empAddress1 != null">
+                <div *ngIf="emp.empAddLine1 != null">
                   <span class="input-label">
                     <strong>Address Line 1<span class="imp">*</span>
                     </strong>
@@ -314,26 +384,27 @@
             <div class="row">
               <!-- Employee Address Line 1 -->
               <div class="col-sm-9">
-                <input type="text" name="Emp_Address1" maxlength="100"
-                  placeholder="Address Line 1" class="form-control" [(ngModel)]="emp.empAddress1">
+                <input type="text" name="Emp_Add_Line1" maxlength="100"
+                  placeholder="Address Line 1" class="form-control"
+                  [(ngModel)]="emp.empAddLine1">
               </div>
             </div>
             <!-- Error row -->
-            <div class="row">
+            <div class="row" *ngIf="formError.empAddLine1 != null">
               <!-- Employee Address Line 1 Error -->
               <div class="col-sm-9">
-                <div *ngIf="formError.empAddress1.error" class="text-danger form-error">
-                  {{ formError.empAddress1.message }}
+                <div *ngIf="formError.empAddLine1.error" class="text-danger form-error">
+                  {{ formError.empAddLine1.message }}
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group">
-          <!-- Input field row -->
+            <!-- Employee Address Line 2 -->
             <!-- Input Field Labels -->
             <div class="row">
               <div class="col-sm-3">
-                <div *ngIf="emp.empAddress2 != null">
+                <div *ngIf="emp.empAddLine2 != null">
                   <span class="input-label">
                     <strong>Address Line 2<span class="imp">*</span></strong>
                   </span>
@@ -341,18 +412,19 @@
               </div>
             </div>
             <div class="row">
-              <!-- Employee Address Line 2 -->
+              <!-- Input field row -->
               <div class="col-sm-9">
                 <input type="text" name="Emp_Address2" maxlength="100"
-                  placeholder="Address Line 2" class="form-control" [(ngModel)]="emp.empAddress2">
+                  placeholder="Address Line 2" class="form-control"
+                  [(ngModel)]="emp.empAddLine2">
               </div>
             </div>
             <!-- Error row -->
-            <div class="row">
+            <div class="row" *ngIf="formError.empAddLine2 != null">
               <!-- Employee Address Line 2 Error -->
               <div class="col-sm-9">
-                <div *ngIf="formError.empAddress2.error" class="text-danger form-error">
-                  {{ formError.empAddress2.message }}
+                <div *ngIf="formError.empAddLine2.error" class="text-danger form-error">
+                  {{ formError.empAddLine2.message }}
                 </div>
               </div>
             </div>
@@ -360,6 +432,13 @@
           <div class="form-group">
             <!-- Input Field Labels -->
             <div class="row">
+              <div class="col-sm-3">
+                <div *ngIf="emp.empZone != null">
+                  <span class="input-label fadeIn">
+                    <strong>Zone<span class="imp">*</span></strong>
+                  </span>
+                </div>
+              </div>
               <div class="col-sm-3">
                 <div *ngIf="emp.empPin != null">
                   <span class="input-label fadeIn">
@@ -377,19 +456,24 @@
             </div>
             <!-- Input field row -->
             <div class="row">
+              <!-- Zone -->
+              <div class="col-sm-3">
+                <input type="text" name="Emp_Zone" maxlength="6"
+                  placeholder="Zone" class="form-control" [(ngModel)]="emp.empZone">
+              </div>
               <!-- Employee Postal Code (PIN) -->
               <div class="col-sm-3">
                 <input type="text" name="Emp_PIN" maxlength="6"
                   placeholder="Postal Code (PIN)" class="form-control" [(ngModel)]="emp.empPin">
               </div>
-              <!-- Employee Pickup Location -->
+              <!-- Employee Pickup Area -->
               <div class="col-sm-3">
                 <input type="text" name="Emp_Pickup" maxlength="20"
-                  placeholder="Pickup Location" class="form-control" [(ngModel)]="emp.empPickup">
+                  placeholder="Pickup Area" class="form-control" [(ngModel)]="emp.empPickupArea">
               </div>
             </div>
             <!-- Error row -->
-            <div class="row">
+            <div class="row" *ngIf="formError.empPin != null && formError.empPickupArea != null">
               <!-- Employee Postal Code (PIN) Error -->
               <div class="col-sm-3">
                 <div *ngIf="formError.empPin.error" class="text-danger form-error">
@@ -398,8 +482,8 @@
               </div>
               <!-- Employee Pickup Location Error -->
               <div class="col-sm-3">
-                <div *ngIf="formError.empPickup.error" class="text-danger form-error">
-                  {{ formError.empPickup.message }}
+                <div *ngIf="formError.empPickupArea.error" class="text-danger form-error">
+                  {{ formError.empPickupArea.message }}
                 </div>
               </div>
             </div>
@@ -418,5 +502,5 @@
         </form>
         </div>
       </div>
-    </div> 
+    </div>
   </div>

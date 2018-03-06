@@ -19,6 +19,7 @@ export class ViewEmployeeDetailsComponent implements OnInit {
   error=false;
   errorMessage = '';
   selectedItem;
+  currEmployeeRole;       //// The current employee role
   
   constructor(
     public _employeeData: EmployeeData,
@@ -32,12 +33,21 @@ export class ViewEmployeeDetailsComponent implements OnInit {
 
     this.employeeService.currentEmp.subscribe((emp) => {
       this.emp = emp;
+      this.initCurrEmployeeRole(this.emp);
       // console.log(emp);
     });
     this.router.events.subscribe((e) => {
       if(e instanceof NavigationEnd){
         // this.getEmployeeFromUrl();
       }
+    });
+  }
+
+  //// To initialise the role of the current employee
+  initCurrEmployeeRole(emp:Employee){
+    this.employeeService.getAllRoles().subscribe((data) => {
+      this.currEmployeeRole = data[emp.rolesId];
+      return;
     });
   }
 

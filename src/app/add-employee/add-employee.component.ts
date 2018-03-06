@@ -19,7 +19,30 @@ export class AddEmployeeComponent implements OnInit {
   mgrReq:MgrRequest;
   mgrSuggestion = false;
   selectedManager:string;
+  selectedManager1:string;
+  selectedManager2:string;
+  saveClicked = false;
 
+  //// Stores which fields have been altered by the user....
+  altered = {
+    empQlid: false,
+    empFName: false,
+    empMName: false,
+    empLName: false,
+    empMobNbr: false,
+    empGender: false,
+    rolesId: false,
+    empMgrQlid1: false,
+    empMgrQlid2: false,
+    empAddLine1: false,
+    empAddLine2: false,
+    empZone: false,
+    empPin: false,
+    empPickupArea: false,
+    empHomeNbr: false,
+    empEmergNbr: false,
+    empBloodGrp: false
+  };
   //// Initialise formError
   formError = {
     empQlid: {error: false, message: ''},
@@ -33,6 +56,7 @@ export class AddEmployeeComponent implements OnInit {
     empMgrQlid2: {error: false, message: ''},
     empAddLine1: {error: false, message: ''},
     empAddLine2: {error: false, message: ''},
+    empZone: {error: false, message: ''},
     empPin: {error: false, message: ''},
     empPickupArea: {error: false, message: ''},
     empHomeNbr: {error: false, message: ''},
@@ -53,42 +77,75 @@ export class AddEmployeeComponent implements OnInit {
     this.employeeService.getAllManagers().subscribe((data) => {
       this.mgrArr = data;
     });
-    console.log(this.formError);
+    // console.log(this.formError);
   }
 
-  setManagerQlid(manager){
+  setManagerQlid1(manager){
     let strArr = manager.split(':');
-    let mgrQlid;
+    let mgrQlid1;
     if(strArr){
-      mgrQlid = strArr[1].replace(/\s/g, '');
+      mgrQlid1 = strArr[1].replace(/\s/g, '');
     }
-    this.emp.empMgrQlid1 = mgrQlid;
+    this.emp.empMgrQlid1 = mgrQlid1;
+    // console.log('in setManagerQlid1()');
   }
 
-  onMgrQlidChange(qlid){
-    let mgrIndex = -1;
-
-    for(var i=0; i<this.mgrArr.length; ++i){
-      if(this.mgrArr[i].mgrQlid == qlid){
-        mgrIndex = i;
-        break;
-      }
+  setManagerQlid2(manager){
+    let strArr = manager.split(':');
+    let mgrQlid2;
+    if(strArr){
+      mgrQlid2 = strArr[1].replace(/\s/g, '');
+    }
+    this.emp.empMgrQlid2 = mgrQlid2;
+    // console.log('in setManagerQlid2()');
   }
 
-  console.log('!!');
+  onMgrQlid1Change(qlid){
+  //   let mgrIndex1 = -1;
 
-    if(mgrIndex == -1){
-      return;
-    }
+  //   for(var i=0; i<this.mgrArr.length; ++i){
+  //     if(this.mgrArr[i].mgrQlid == qlid){
+  //       mgrIndex1 = i;
+  //       break;
+  //     }
+  //   }
 
-    console.log('!!');
+  //   // console.log('!!');
 
-    this.selectedManager = this.mgrArr[mgrIndex].mgrFName + ' ' +
-                            this.mgrArr[mgrIndex].mgrLName + ' : ' +
-                            this.mgrArr[mgrIndex].mgrQlid;
+  //   if(mgrIndex1 == -1 || this.mgrArr == null || this.mgrArr == undefined){
+  //     return;
+  //   }
+
+  //   // console.log('!!');
+  //   this.selectedManager1 = this.mgrArr[mgrIndex1].mgrFName + ' ' +
+  //                           this.mgrArr[mgrIndex1].mgrLName + ' : ' +
+  //                           this.mgrArr[mgrIndex1].mgrQlid;
+  }
+
+  onMgrQlid2Change(qlid){
+  //   let mgrIndex2 = -1;
+
+  //   for(var i=0; i<this.mgrArr.length; ++i){
+  //     if(this.mgrArr[i].mgrQlid == qlid){
+  //       mgrIndex2 = i;
+  //       break;
+  //     }
+  //   }
+
+  //   // console.log('!!');
+
+  //   if(mgrIndex2 == -1 || this.mgrArr == null || this.mgrArr == undefined){
+  //     return;
+  //   }
+
+  //   // console.log('!!');
+  //   this.selectedManager2 = this.mgrArr[mgrIndex2].mgrFName + ' ' +
+  //                           this.mgrArr[mgrIndex2].mgrLName + ' : ' +
+  //                           this.mgrArr[mgrIndex2].mgrQlid;
   }
 
   onSave(f){
+    this.saveClicked = true;
     if(this.validate()){
       this.showSuccess = true;
       this.showError = false;
@@ -245,6 +302,18 @@ export class AddEmployeeComponent implements OnInit {
       this.formError.empAddLine2.message = 'Address Line 2 cannot be empty!';
     }
 
+    if(this.emp.empZone != null){
+      if(this.emp.empZone.length > 15){
+        validateStatus = false;
+        this.formError.empZone.error = true;
+        this.formError.empZone.message = 'Zone cannot exceed 15 characters!';
+      }
+    }else{
+      validateStatus = false;
+      this.formError.empZone.error = true;
+      this.formError.empZone.message = 'Zone cannot be empty!';
+    }
+
     if(this.emp.empPin != null){
       if((this.emp.empPin+'').match(pinPattern) == null){
         validateStatus = false;
@@ -316,6 +385,7 @@ export class AddEmployeeComponent implements OnInit {
     this.formError.empMgrQlid2.error = false;
     this.formError.empAddLine1.error = false;
     this.formError.empAddLine2.error = false;
+    this.formError.empZone.error = false;
     this.formError.empPin.error = false;
     this.formError.empPickupArea.error = false;
     this.formError.empHomeNbr.error = false;
@@ -333,6 +403,7 @@ export class AddEmployeeComponent implements OnInit {
     this.formError.empMgrQlid2.message = '';
     this.formError.empAddLine1.message = '';
     this.formError.empAddLine2.message = '';
+    this.formError.empZone.message = '';
     this.formError.empPin.message = '';
     this.formError.empPickupArea.message = '';
     this.formError.empHomeNbr.message = '';
@@ -341,6 +412,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   resetForm(){
+    this.refreshErrorValues();
     this.emp.empQlid = '';
     this.emp.empFName = '';
     this.emp.empMName = '';
@@ -352,6 +424,7 @@ export class AddEmployeeComponent implements OnInit {
     this.emp.empMgrQlid2 = '';
     this.emp.empAddLine1 = '';
     this.emp.empAddLine2 = '';
+    this.emp.empZone = '';
     this.emp.empPin = '';
     this.emp.empPickupArea = '';
     this.emp.empHomeNbr = '';

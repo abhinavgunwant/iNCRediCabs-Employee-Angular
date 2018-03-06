@@ -22,13 +22,11 @@ export class ViewEmployeeComponent implements OnInit {
   employeeArr: Employee[];
   noResultError = true;
   empShowQuickDetails;
+  optionsRequired = false;
+  options;
+  rolesCache = null;
 
-  arr:any=[
-    {name:"Shweta", gender:"female", qlid:"  SH766867",dob:"12/12/1996",address:"delhi"},
-    {name:"Bhumika",gender:"female",qlid:"BF766867",dob:"12/08/1996",address:"nainital"},
-    {name:"Anuj",gender:"male",qlid:"AN766867",dob:"01/07/1996",address:"mumbai"},
-    {name:"Abhinav",gender:"male",qlid:"SH796867",dob:"09/05/1996",address:"pune"}
-  ];
+  arr:any=[];
 
   constructor(
     private router: Router,
@@ -79,7 +77,7 @@ export class ViewEmployeeComponent implements OnInit {
   onFilterGo(){
     this.employeeService.viewEmployee(this.filter).subscribe((data) => {
       this.arr = data;
-      console.log(data);
+      // console.log(data);
       if(data.length == 0){
         this.noResultError = true;
       }else{
@@ -140,5 +138,38 @@ export class ViewEmployeeComponent implements OnInit {
 
   onClick(){
     console.log('!!');
+  }
+
+  onFilterChange(){
+    if(this.filter.filterType.toUpperCase() == 'ROLESID'){
+      //// If the rolesCache is null, initialize it with all roles,
+      //// else set options to rolesCache
+      if(this.rolesCache == null){
+        this.employeeService.getAllRoles().subscribe((data) => {
+          this.options = [];
+          console.log(data);
+          this.rolesCache = [
+            {value: 1, text: data[1]},
+            {value: 2, text: data[2]},
+            {value: 4, text: data[3]},
+            {value: 5, text: data[4]},
+            {value: 5, text: data[5]}
+          ];
+        this.options = this.rolesCache;
+        });
+      }else{
+        this.options = this.rolesCache;
+      }
+      this.optionsRequired = true;
+    } else if(this.filter.filterType.toUpperCase() == 'EMPSTATUS'){
+      this.options = [
+        {value: 'A', text: 'Active'},
+        {value: 'I', text: 'Inactive'}
+      ];
+      this.optionsRequired = true;
+    }else{
+      this.filter.filterValue = '';
+      this.optionsRequired = false;      
+    }
   }
 }

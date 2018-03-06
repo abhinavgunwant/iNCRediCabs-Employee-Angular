@@ -9,19 +9,28 @@
               <h3 id="filter-title">Filter</h3>
           </div> -->
           <div class="col-sm-3">
-            <select name="filterType" type="" class="form-control" [(ngModel)]="filter.filterType">
+            <select name="filterType" type="" class="form-control" [(ngModel)]="filter.filterType"
+              (change)="onFilterChange()">
               <option value="" dsisabled selected>Filter By</option>
-              <option value="mgrQlid">Manager QLID</option>
-              <option value="mgrName">Manager Name</option>
               <option value="empQlid">Employee QLID</option>
               <option value="empName">Employee Name</option>
+              <option value="mgrQlid1">L1 Manager QLID</option>
+              <option value="mgrQlid2">L2 Manager QLID</option>
+              <option value="mgrName1">L1 Manager Name</option>
+              <option value="mgrName2">L2 Manager Name</option>
               <option value="empPickupArea">Employee Pickup Area</option>
               <option value="empPin">Employee Postal Code</option>
-              <option value="roleId">Employee Role</option>
+              <option value="rolesId">Employee Role</option>
+              <option value="empStatus">Employee Status</option>
             </select>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-3" *ngIf="optionsRequired == false">
             <input type="text" name="filterValue" class="form-control" [(ngModel)]="filter.filterValue">
+          </div>
+          <div class="col-sm-3" *ngIf="optionsRequired">
+            <select name="filterValue" class="form-control" [(ngModel)]="filter.filterValue">
+              <option *ngFor="let opt of options" value="{{opt.value}}">{{ opt.text }}</option>
+            </select>
           </div>
           <div class="col-sm-3">
             <button type="submit" class="btn btn-default" (click)="onFilterGo">
@@ -57,7 +66,7 @@
                 View Details
               </span>
             </span>
-            <span id="qpb-eed-{{i}}">
+            <span id="qpb-eed-{{i}}" *ngIf="i != undefined">
               <button type="button" class="btn btn-default btn-md panel-quick-button"
                 (click)="editEmployee(emp, i)" (mouseenter)="onPanelQuickButtonMouseEnter($event.target)"
                 (mouseleave)="onPanelQuickButtonMouseLeave($event.target)">
@@ -67,7 +76,7 @@
                 Edit Employee Details
               </span>
             </span>
-            <span id="qpb-hqd-{{i}}">
+            <span id="qpb-hqd-{{i}}" *ngIf="empShowQuickDetails != undefined">
               <button type="button"  class="btn btn-default btn-md panel-quick-button" 
                 *ngIf="empShowQuickDetails[i] == true" (click)="hideQuickDetails(i)"
                 (mouseenter)="onPanelQuickButtonMouseEnter($event.target)"
@@ -78,7 +87,7 @@
                 Hide Quick Details
               </span>
             </span>
-            <span id="qpb-sqd-{{i}}">
+            <span id="qpb-sqd-{{i}}" *ngIf="empShowQuickDetails != undefined">
               <button type="button"  class="btn btn-default btn-md panel-quick-button" 
                 *ngIf="empShowQuickDetails[i] == false" (click)="showQuickDetails(i)"
                 (mouseenter)="onPanelQuickButtonMouseEnter($event.target)"
@@ -100,7 +109,8 @@
                   <table>
                     <tr>
                       <td><strong>Gender:</strong></td>
-                      <td>{{ emp.empGender }}</td>
+                      <td *ngIf="emp.empGender.toUpperCase() == 'M'">Male</td>
+                      <td *ngIf="emp.empGender.toUpperCase() == 'F'">Female</td>
                     </tr>
                     <tr>
                       <td><strong>PIN:</strong></td>
@@ -123,8 +133,8 @@
                 <td class="col-sm-3">
                   <table>
                     <tr>
-                      <td><strong>L1 Manager QLID:</strong></td>
-                      <td>{{ emp.empMgrQlid1 }}</td>
+                      <td><strong>Zone:</strong></td>
+                      <td>{{ emp.empZone }}</td>
                     </tr>
                     <tr>
                       <td><strong>Role:</strong></td>
@@ -132,6 +142,18 @@
                         {{ emp?.roleId }}
                         <span *ngIf="emp.roleId == null">Employee</span>
                       </td>
+                    </tr>
+                  </table>
+                </td>
+                <td class="col-sm-3">
+                  <table>
+                    <tr>
+                      <td><strong>L1 Manager QLID:</strong></td>
+                      <td>{{ emp.empMgrQlid1 }}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>L2 Manager QLID:</strong></td>
+                      <td>{{ emp.empMgrQlid2 }}</td>
                     </tr>
                   </table>
                 </td>

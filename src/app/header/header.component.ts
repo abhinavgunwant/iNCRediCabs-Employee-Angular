@@ -21,12 +21,6 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   constructor(private _router: Router, private _loginService: LoginService) {
     this.router = _router;
     this.loginService = _loginService;
-
-    // $('#header-employee-add').hover(function(){
-    //   $('#' + $(this).id() + ' .tooltip-text').show();
-    // }, function(){
-
-    // });
   }
 
   ngOnInit() {
@@ -36,12 +30,14 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
         this.headerUpdate();
       }
     });
-    
-    this.loginService.checkLoginStatus().subscribe((data)=>{
-      if(data['login'] == false){
-        return this.router.navigateByUrl('/no-session');
-      }
-    });
+
+    //// TODO: uncomment below lines after session issues are resolved!
+        
+    // this.loginService.checkLoginStatus().subscribe((data)=>{
+    //   if(data['login'] == false){
+    //     return this.router.navigateByUrl('/no-session');
+    //   }
+    // });
   }
 
   ngAfterViewChecked() {}

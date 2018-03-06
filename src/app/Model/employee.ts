@@ -10,6 +10,7 @@ export class Employee {
         public empEmergNbr?: string,
         public empAddLine1?: string,
         public empAddLine2?: string,
+        public empZone?: string,
         public empPin?: string,
         public empPickupArea?: string,
         public empBloodGrp?: string,

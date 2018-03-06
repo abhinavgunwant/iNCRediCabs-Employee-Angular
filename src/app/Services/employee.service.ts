@@ -96,9 +96,18 @@ export class EmployeeService {
             headers: this.headers,
             body: JSON.stringify({}),
             shouldBlock: true
-        })
+        });
     }
 
+    getAllRoles():Observable<any>{
+        return this.apiService.callApiService({
+            requestType: REQUEST_TYPE_POST,
+            url: `${environment.getAllRolesUrl}`,
+            headers: this.headers,
+            body: JSON.stringify({}),
+            shouldBlock: true
+        });
+    }
     // checkManager(manager): Observable<any>{
     //     return this.apiService.callApiService({
     //         requestType: REQUEST_TYPE_POST,

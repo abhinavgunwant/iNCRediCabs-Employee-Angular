@@ -22,6 +22,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { NoSessionComponent } from './no-session/no-session.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { Employee } from './Model/employee';
+import { NewAccSetupComponent } from './new-acc-setup/new-acc-setup.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UserCredService } from './Services/user-cred.service';
+import { SetPasswordEmployeeComponent } from './set-password-employee/set-password-employee.component';
+import { ForgotPasswordChangeEmployeeComponent } from './forgot-password-change-employee/forgot-password-change-employee.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,11 @@ import { Employee } from './Model/employee';
     AddEmployeeComponent,
     LogoutComponent,
     NoSessionComponent,
-    EditEmployeeComponent
+    EditEmployeeComponent,
+    NewAccSetupComponent,
+    ForgotPasswordComponent,
+    SetPasswordEmployeeComponent,
+    ForgotPasswordChangeEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +59,7 @@ import { Employee } from './Model/employee';
     LoginService,
     EmployeeData,
     EmployeeService,
+    UserCredService,
     Location
   ],
   bootstrap: [AppComponent]

@@ -20,7 +20,8 @@ export class EditEmployeeComponent implements OnInit {
   mgr: string = null;
   mgrArr:Array<Manager> = [];
   mgrSuggestion = false;
-  selectedManager:string;
+  selectedManager1:string;
+  selectedManager2:string;
   showSuccess = false;
   showError = false;
   message = '';
@@ -38,6 +39,7 @@ export class EditEmployeeComponent implements OnInit {
     empMgrQlid2: {error: false, message: ''},
     empAddLine1: {error: false, message: ''},
     empAddLine2: {error: false, message: ''},
+    empZone: {error: false, message: ''},
     empPin: {error: false, message: ''},
     empPickupArea: {error: false, message: ''},
     empHomeNbr: {error: false, message: ''},
@@ -53,13 +55,16 @@ export class EditEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.employeeService.currentEmp.subscribe((emp) => {
+      // emp.empStatus.toUpperCase();
       this.emp = emp;
-      console.log(emp);
+      this.emp.empStatus = this.emp.empStatus.toUpperCase();
+      this.emp.empGender = this.emp.empGender.toUpperCase();
+      // console.log(this.emp);
     });
     this.mgrSuggestion = true;
     this.employeeService.getAllManagers().subscribe((data) => {
       this.mgrArr = data;
-      console.log(data);
+      // console.log(data);
 
       //// Set the Manager name 
       let mgrQlid, mgrIndex;
@@ -70,13 +75,35 @@ export class EditEmployeeComponent implements OnInit {
           break;
         }
       }
-      this.selectedManager = this.mgrArr[mgrIndex].mgrFName + ' '
-              + this.mgrArr[mgrIndex].mgrLName + ' : ' + mgrQlid;
+
+      if(this.mgrArr[mgrIndex] != null){
+        this.selectedManager1 = this.mgrArr[mgrIndex].mgrFName + ' '
+                + this.mgrArr[mgrIndex].mgrLName + ' : ' + mgrQlid;
+      }
     });
   }
 
   onClickBack(){
     this._location.back();
+  }
+
+  setManagerQlid1(manager){
+    let strArr = manager.split(':');
+    let mgrQlid1;
+    let mgrQlid2;
+    if(strArr){
+      mgrQlid1 = strArr[1].replace(/\s/g, '');
+    }
+    this.emp.empMgrQlid1 = mgrQlid1;
+  }
+
+  setManagerQlid2(manager){
+    let strArr = manager.split(':');
+    let mgrQlid2;
+    if(strArr){
+      mgrQlid2 = strArr[1].replace(/\s/g, '');
+    }
+    this.emp.empMgrQlid2 = mgrQlid2;
   }
 
   onSave(f){
@@ -85,7 +112,7 @@ export class EditEmployeeComponent implements OnInit {
       console.log("From is valid!");
       this.employeeService.editEmployee(this.emp).subscribe((data) => {
         // console.log("!!");
-        console.log(data);
+        // console.log(data);
         if(data.success == false){
           this.formError = data;
         }
@@ -228,6 +255,18 @@ export class EditEmployeeComponent implements OnInit {
       this.formError.empAddLine2.message = 'Address Line 2 cannot be empty!';
     }
 
+    if(this.emp.empZone != null){
+      if(this.emp.empZone.length > 15){
+        validateStatus = false;
+        this.formError.empZone.error = true;
+        this.formError.empZone.message = 'Zone cannot exceed 15 characters!';
+      }
+    }else{
+      validateStatus = false;
+      this.formError.empZone.error = true;
+      this.formError.empZone.message = 'Zone cannot be empty!';
+    }
+
     if(this.emp.empPin != null){
       if((this.emp.empPin+"").match(pinPattern) == null){
         validateStatus = false;
@@ -299,6 +338,7 @@ export class EditEmployeeComponent implements OnInit {
     this.formError.empMgrQlid2.error = false;
     this.formError.empAddLine1.error = false;
     this.formError.empAddLine2.error = false;
+    this.formError.empZone.error = false;
     this.formError.empPin.error = false;
     this.formError.empPickupArea.error = false;
     this.formError.empHomeNbr.error = false;
@@ -316,6 +356,7 @@ export class EditEmployeeComponent implements OnInit {
     this.formError.empMgrQlid2.message = '';
     this.formError.empAddLine1.message = '';
     this.formError.empAddLine2.message = '';
+    this.formError.empZone.message = '';
     this.formError.empPin.message = '';
     this.formError.empPickupArea.message = '';
     this.formError.empHomeNbr.message = '';

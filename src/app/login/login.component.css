@@ -3,7 +3,8 @@ body {
 }
 
 #loginbox {
-    margin-top: 30px;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 
 #loginbox > div:first-child {        
@@ -62,4 +63,33 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.form-group ul{
+    list-style-type: none;
+    padding: 0px;
+}
+
+.g-recaptcha{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.panel, .panel-default{
+    padding: 0px;
+    margin: 0px;
+}
+
+.panel-body{
+    padding: 10px 10px 0px 10px;
+}
+
+.panel-body .input-group{
+    margin-bottom: 5px;
+    padding: 0px;
+}
+
+table td{
+    padding: 0px;
 }

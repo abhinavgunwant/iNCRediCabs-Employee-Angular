@@ -75,27 +75,27 @@
                     </td>
                   </tr>
                   <tr>
-                    <td> Qlid:</td>
-                    <td> {{emp?.empQlid}}</td>
+                    <td>Qlid:</td>
+                    <td>{{emp?.empQlid}}</td>
                   </tr>
                   <tr>
-                    <td> Name:</td>
-                    <td> {{emp?.empFName}} {{ emp?.empMName }} {{emp.empLName}}</td>
+                    <td>Name:</td>
+                    <td>{{emp?.empFName}} {{ emp?.empMName }} {{emp.empLName}}</td>
                   </tr>
                   <tr *ngIf="emp.empGender">
                     <td>Gender:</td>
                     <td>
-                      <span *ngIf="emp.empGender == 'M'">
+                      <span *ngIf="emp.empGender == 'M' || emp.empGender == 'm'">
                         Male
                       </span>
-                      <span *ngIf="emp.empGender == 'F'">
+                      <span *ngIf="emp.empGender == 'F' || emp.empGender == 'f'">
                         Female
                       </span>
                     </td>
                   </tr>
                   <tr *ngIf="emp.rolesId">
-                      <td> Role ID:</td>
-                      <td> {{ emp?.rolesId }}</td>
+                      <td> Role:</td>
+                      <td> {{ currEmployeeRole }}</td>
                   </tr>
                   <tr>
                     <td> Contact No:</td>
@@ -127,19 +127,23 @@
                   </tr> -->
                   <tr>
                     <td>Address Line 1:</td>
-                    <td> {{emp?.empAddress1}}</td>
+                    <td> {{emp?.empAddLine1}}</td>
                   </tr>
                   <tr>
                     <td>Address Line 2:</td>
-                    <td> {{emp?.empAddress2}}</td>
+                    <td> {{emp?.empAddLine2}}</td>
+                  </tr>
+                  <tr>
+                    <td>Zone:</td>
+                    <td> {{ emp?.empZone }}</td>
                   </tr>
                   <tr>
                     <td>Postal Code (PIN):</td>
                     <td> {{ emp?.empPin }}</td>
                   </tr>
                   <tr>
-                      <td> Pickup Location:</td>
-                      <td> {{ emp?.empPickup }}</td>
+                    <td> Pickup Location:</td>
+                    <td> {{ emp?.empPickupArea }}</td>
                   </tr>
                 </tbody>
               </table>

@@ -10,18 +10,32 @@ import { LoginComponent }               from './login/login.component';
 import { LogoutComponent }              from './logout/logout.component';
 import { NoSessionComponent }           from './no-session/no-session.component';
 import { EditEmployeeComponent }        from './edit-employee/edit-employee.component';
+import { NewAccSetupComponent }         from './new-acc-setup/new-acc-setup.component';
+import { ForgotPasswordComponent }      from './forgot-password/forgot-password.component';
+import { SetPasswordEmployeeComponent } from './set-password-employee/set-password-employee.component';
+import { ForgotPasswordChangeEmployeeComponent } from './forgot-password-change-employee/forgot-password-change-employee.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login',                  component: LoginComponent},
-  { path: 'dash',                   component: DashComponent },
-  { path: 'employee/view/details',  component: ViewEmployeeDetailsComponent},
-  { path: 'employee/view',          component: ViewEmployeeComponent},
-  { path: 'employee',               component: EmployeeComponent },
-  { path: 'employee/add',           component: AddEmployeeComponent },
-  { path: 'employee/edit',          component: EditEmployeeComponent},
-  { path: 'logout',                 component: LogoutComponent },
-  { path: 'no-session',             component: NoSessionComponent}
+  { path: '', redirectTo: '/login',   pathMatch: 'full' },
+  { path: 'login',                    component: LoginComponent},
+  { path: 'new-acc-setup',            component: NewAccSetupComponent},
+  {
+    path:       'new-acc-setup/set-password/:qlid/:token',
+    component:  SetPasswordEmployeeComponent
+  },
+  {
+    path:       'forgot-password/set-password/:qlid/:token',
+    component:  ForgotPasswordChangeEmployeeComponent
+  },
+  { path: 'dash',                     component: DashComponent },
+  { path: 'forgot-password',          component: ForgotPasswordComponent },
+  { path: 'employee/view/details',    component: ViewEmployeeDetailsComponent},
+  { path: 'employee/view',            component: ViewEmployeeComponent},
+  { path: 'employee',                 component: EmployeeComponent },
+  { path: 'employee/add',             component: AddEmployeeComponent },
+  { path: 'employee/edit',            component: EditEmployeeComponent},
+  { path: 'logout',                   component: LogoutComponent },
+  { path: 'no-session',               component: NoSessionComponent}
 ];
 
 @NgModule({

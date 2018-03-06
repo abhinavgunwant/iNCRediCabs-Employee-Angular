@@ -15,6 +15,11 @@ export const environment = {
   editEmployeeUrl: "http://localhost:8080/iNCRediCabs/edit-employee",
   viewEmployeeUrl: "http://localhost:8080/iNCRediCabs/view-employee",
   getManagerByNameUrl: "http://localhost:8080/iNCRediCabs/get-manager-by-name",
-  getAllManagersUrl: "http://localhost:8080/iNCRediCabs/get-all-managers"//,
-  // checkManager: ""
+  getAllManagersUrl: "http://localhost:8080/iNCRediCabs/get-all-managers",
+  getAllRolesUrl: "http://localhost:8080/iNCRediCabs/get-all-roles",
+  newAccSetupQlidUrl: "http://localhost:8080/iNCRediCabs/new-acc-setup",
+  forgotpasswordUrl:  "http://localhost:8080/iNCRediCabs/forgot-password",
+  forgotpassSetPasswordUrl:  "http://localhost:8080/iNCRediCabs/forgot-password/set-password",
+  accSetupSetPasswordUrl: "http://localhost:8080/iNCRediCabs/new-acc-setup/set-password",
+  verifyPwdTokenUrl: "http://localhost:8080/iNCRediCabs/verify-pwd-token",
 };
