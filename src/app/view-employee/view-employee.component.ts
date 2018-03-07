@@ -9,8 +9,6 @@ import { Employee } from '../Model/employee';
 declare var jquery:any;
 declare var $ :any;
 
-// @Input(tooltip-id)
-
 @Component({
   selector: 'app-view-employee',
   templateUrl: './view-employee.component.html',
