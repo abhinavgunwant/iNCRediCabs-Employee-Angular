@@ -1,11 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+//import { TodolistComponent } from './todolist/todolist.component';
+//import { AddtodoComponent } from './addtodo/addtodo.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpModule } from '@angular/http';
+// import { StoreModule } from '@ngrx/store';
+// import { todoreducer } from '../app/Reducers/todoreducer';
+// import { TodoActions } from '../app/Actions/TodoActions';
+// import { TodoService } from '../app/Services/todo.service';
 import { LoginService } from '../app/Services/login.service';
 import { ApiService } from '../app/Services/api.service';
 import { LoginComponent } from './login/login.component';
@@ -17,14 +23,30 @@ import { ViewEmployeeDetailsComponent } from './view-employee-details/view-emplo
 import { DashComponent } from './dash/dash.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { RosterViewComponent } from './roster-view/roster-view.component';
+import { ShowRouteComponent } from './show-route/show-route.component';
+import { UploadFormComponent } from './upload-form/upload-form.component';
+import { RosterService } from './Services/roster.service';
+import { AddempComponent } from './addemp/addemp.component';
+import { RosterEmpDetailComponent } from './roster-emp-detail/roster-emp-detail.component';
+import { UnscheduledFormComponent } from './unscheduled-form/unscheduled-form.component';
+import { ScheduledFormComponent } from './scheduled-form/scheduled-form.component';
+import { AddRouteComponent } from './add-route/add-route.component';
+import { EmployeditComponent } from './employedit/employedit.component';
+import { EditRouteComponent } from './edit-route/edit-route.component';
 import { EmployeeService } from './Services/employee.service';
 import { LogoutComponent } from './logout/logout.component';
 import { NoSessionComponent } from './no-session/no-session.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { Employee } from './Model/employee';
+import { UnscheduledRequestComponent } from './unscheduled-request/unscheduled-request.component';
 import { NewAccSetupComponent } from './new-acc-setup/new-acc-setup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { UserCredService } from './Services/user-cred.service';
+import { UnscheduledRequestService } from './Services/unscheduled-request.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ReportComponent } from './report/report.component';
+import { HeaderReportlistComponent } from './header-reportlist/header-reportlist.component';
 import { SetPasswordEmployeeComponent } from './set-password-employee/set-password-employee.component';
 import { ForgotPasswordChangeEmployeeComponent } from './forgot-password-change-employee/forgot-password-change-employee.component';
 
@@ -32,6 +54,8 @@ import { ForgotPasswordChangeEmployeeComponent } from './forgot-password-change-
   declarations: [
     AppComponent,
     HeaderComponent,
+    //TodolistComponent,
+    //AddtodoComponent,
     FooterComponent,
     LoginComponent,
     DashboardComponent,
@@ -43,24 +67,44 @@ import { ForgotPasswordChangeEmployeeComponent } from './forgot-password-change-
     LogoutComponent,
     NoSessionComponent,
     EditEmployeeComponent,
+    ReportComponent,
+    HeaderReportlistComponent,
+    UnscheduledRequestComponent,
     NewAccSetupComponent,
     ForgotPasswordComponent,
     SetPasswordEmployeeComponent,
+    RosterViewComponent,
+    ShowRouteComponent,
+    UploadFormComponent,
+    AddempComponent,
+    RosterEmpDetailComponent,
+    UnscheduledFormComponent,
+    ScheduledFormComponent,
+    AddRouteComponent,
+    EmployeditComponent,
+    EditRouteComponent,
     ForgotPasswordChangeEmployeeComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
+    // StoreModule.provideStore({todoreducer}),
     AppRoutingModule
   ],
   providers: [
+    // TodoActions,
+    // TodoService,
     ApiService,
     LoginService,
     EmployeeData,
     EmployeeService,
+    UnscheduledRequestService,
     UserCredService,
-    Location
+    Location,
+    RosterService
   ],
   bootstrap: [AppComponent]
 })

@@ -49,4 +49,6 @@ h3{
 .img-thumbnail{
     border: none;
     padding: 0px;
+    width: 128px;
+    height: 128px;
 }

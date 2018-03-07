@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default">
   <table class="col-sm-12">
     <tr>
-      <td class="col-lg-7">
+      <td class="col-lg-4">
         <div class="navbar-brand"><strong>iNCRediCabs</strong></div>
         <ul class="nav navbar-nav">
           <li><a routerLink="/dash">Dashboard</a></li>
           <!-- <li><a routerLink="/logout">Logout</a></li> -->
         </ul>
       </td>
-      <td *ngIf="employee || roster || vendor || reports" class="col-lg-3">
+      <td *ngIf="employee || roster || vendor || reports" class="col-lg-4">
         <!-- Employee Menu -->
         <div id="employee_menu" *ngIf="employee">
           <div class="navbar-brand">Employee</div>
@@ -38,9 +38,10 @@
         <!-- Roster Menu -->
         <div id="roster_menu" *ngIf="roster">
           <div class="navbar-brand">Roster</div>
-          <ul class="nav navbar-nav">
-            <li><a href="#">Add Roster</a></li>
-            <li><a href="#">View / Edit Roster</a></li>
+          <ul class="nav navbar-nav ">
+            <li><a routerLink="/addRoute">Add Route</a></li>
+            <li><a routerLink="/editroute">Edit Route</a></li>
+            <li><a (click)="emitUpload()" >Upload Roster</a></li>
           </ul>
         </div>
         <!-- Vendor Menu -->
@@ -55,12 +56,22 @@
         <div id="reports_menu" *ngIf="reports">
           <div class="navbar-brand">Reports</div>
           <ul class="nav navbar-nav">
-            <li><a href="#">Add Reports</a></li>
-            <li><a href="#">View / Edit Reports</a></li>
+            <li>
+              <a routerLink="/unscheduledRequest">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>
+                Request
+              </a>
+            </li>
+            <li>
+              <a (click)="downloadRequestExcel()">
+                <span class="glyphicon glyphicon-download-alt"></span>
+                Download
+              </a>
+            </li>
           </ul>
         </div>
       </td>
-      <td class="col-lg-2">
+      <td class="col-lg-1">
         <ul class="nav navbar-nav pull-right">
           <li>
             <a routerLink="/logout">
@@ -68,7 +79,7 @@
               Logout
             </a>
           </li>
-        </ul>       
+        </ul> 
       </td>
     </tr>
   </table>

@@ -1,7 +1,9 @@
-import { Component, OnInit, EventEmitter, AfterContentInit, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, EventEmitter, AfterContentInit, AfterViewInit, AfterViewChecked, Output } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { LoginService } from '../Services/login.service';
-
+import { UnscheduledRequestService } from '../Services/unscheduled-request.service';
+import {UnscheduledRequestComponent} from '../unscheduled-request/unscheduled-request.component';
+import { RosterService } from '../Services/roster.service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -17,10 +19,18 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   reports = false;
   router: Router;
   loginService: LoginService;
-
-  constructor(private _router: Router, private _loginService: LoginService) {
-    this.router = _router;
-    this.loginService = _loginService;
+  unscheduledRequestService:UnscheduledRequestService;
+  public showDownload; 
+  public uploadValue:boolean=true;
+  public obj =new UnscheduledRequestComponent(this.unscheduledRequestService);
+  @Output() public childevent =new EventEmitter(); 
+  
+  constructor(private _router: Router,
+              private _loginService: LoginService,
+	            private _http:RosterService) {
+    			this.router = _router;
+    			this.loginService = _loginService;
+    			this.showDownload=true;
   }
 
   ngOnInit() {
@@ -38,9 +48,20 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     //     return this.router.navigateByUrl('/no-session');
     //   }
     // });
+  
+  }
+
+
+  downloadRequestExcel(){
+    this.obj.downloadRequestExcel();
   }
 
   ngAfterViewChecked() {}
+  
+  emitUpload(){
+    this.childevent.emit(this.uploadValue);
+  }
+
 
   headerUpdate(){
     let url = this.router.url;
@@ -66,7 +87,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     }
 
     //// Roster
-    empRes = url.match(/\/roster*/i);
+    empRes = url.match(/\/roster.*/i);
     if(empRes != null){
       this.employee = false;
       this.roster = true;
@@ -76,7 +97,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     }    
 
     //// Vendor
-    empRes = url.match(/\/vendor*/i);
+    empRes = url.match(/\/vendor.*/i);
     if(empRes != null){
       this.employee = false;
       this.roster = false;
@@ -86,7 +107,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     }
 
     //// Reports
-    empRes = url.match(/\/reports*/i);
+    empRes = url.match(/\/report.*/i);
     if(empRes != null){
       this.employee = false;
       this.roster = false;

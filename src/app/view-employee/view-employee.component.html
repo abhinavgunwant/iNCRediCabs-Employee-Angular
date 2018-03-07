@@ -43,8 +43,13 @@
   </div>
 </div>
 <div id="view-employee" class="row-sm-10 row-lg-10">
-  <div *ngIf="noResultError" class="alert alert-danger">
+  <!-- <div *ngIf="noResultError" class="alert alert-danger">
     <strong>Error!</strong> No response returned corresponding to your filter.
+  </div> -->
+  <div *ngIf="showLoading" class="loader">
+    <div class="loader-text text-center">
+      Loading...
+    </div>
   </div>
   <div *ngIf="arr">
     <div *ngFor="let emp of arr;let i = index">

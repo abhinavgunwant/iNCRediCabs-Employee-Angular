@@ -71,3 +71,38 @@
     border-style: solid;
     border-color: transparent transparent black transparent;
 }
+
+.loader{
+    background-image: url('/assets/img/loading.gif');
+    background-size: 120px 120px;
+    background-repeat: no-repeat;
+    height: 120px;
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loader-text{
+    position: relative;
+    top:80px;
+    left:5px;
+}
+
+/* .loader{
+    border: 40px solid #f3f3f3;
+    border-top: 40px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 50%;
+    animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  } */

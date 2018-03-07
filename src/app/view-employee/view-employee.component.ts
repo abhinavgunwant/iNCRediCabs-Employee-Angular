@@ -18,6 +18,7 @@ declare var $ :any;
 export class ViewEmployeeComponent implements OnInit {
   filter: Filter;
   employeeArr: Employee[];
+  showLoading = true;
   noResultError = true;
   empShowQuickDetails;
   optionsRequired = false;
@@ -75,11 +76,12 @@ export class ViewEmployeeComponent implements OnInit {
   onFilterGo(){
     this.employeeService.viewEmployee(this.filter).subscribe((data) => {
       this.arr = data;
-      // console.log(data);
+      console.log(data);
       if(data.length == 0){
         this.noResultError = true;
       }else{
         this.noResultError = false;
+        this.showLoading = false;
       }
       this.empShowQuickDetails = [];
       for(var i=0; i<this.arr.length; ++i){
