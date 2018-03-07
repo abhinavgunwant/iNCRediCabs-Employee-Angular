@@ -21,6 +21,7 @@ export class SetPasswordEmployeeComponent implements OnInit {
   message = "";
   tokenValid = false;
   invalidTokenError = true;
+  showLoading = true;
 
   formTest = {
     char8: false,
@@ -48,6 +49,7 @@ export class SetPasswordEmployeeComponent implements OnInit {
       this.userCredService.verifyPwdToken(this.qlid, this.token).subscribe((data) => {
         // console.log(data);
         if(data != null && data != undefined){
+          this.showLoading = false;
           if(data.valid){
             this.invalidTokenError = false;
           }else{

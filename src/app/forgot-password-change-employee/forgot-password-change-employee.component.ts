@@ -20,6 +20,7 @@ export class ForgotPasswordChangeEmployeeComponent implements OnInit {
   message = "";
   tokenValid = false;
   invalidTokenError = true;
+  showLoading = false;
 
   formTest = {
     char8: false,
@@ -47,6 +48,7 @@ export class ForgotPasswordChangeEmployeeComponent implements OnInit {
       this.userCredService.verifyPwdToken(this.qlid, this.token).subscribe((data) => {
         console.log(data);
         if(data != null && data != undefined){
+          this.showLoading = false;
           if(data.valid){
             this.invalidTokenError = false;
           }else{

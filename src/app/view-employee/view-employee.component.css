@@ -72,7 +72,7 @@
     border-color: transparent transparent black transparent;
 }
 
-.loader{
+.loader-animation{
     background-image: url('/assets/img/loading.gif');
     background-size: 120px 120px;
     background-repeat: no-repeat;
@@ -82,7 +82,7 @@
     margin-right: auto;
 }
 
-.loader-text{
+.loader-animation-text{
     position: relative;
     top:80px;
     left:5px;
