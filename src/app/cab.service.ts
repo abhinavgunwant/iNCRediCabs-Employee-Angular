@@ -14,44 +14,44 @@ export class CabService {
     getCabs():Observable<any>{
         
         var data;
-        return this._http.post(env.environment.url+'/Cab/CabDetails','').map((response)=>{
+        return this._http.post(env.environment.url+'/VendorService/CabDetails','').map((response)=>{
           return response.json()
         })
         
       }
       searchCab(body){
-        return this._http.post(env.environment.url+"/Search/SearchCab",body).map((response)=>{
+        return this._http.post(env.environment.url+"/VendorService/SearchCab",body).map((response)=>{
       return response.json()
     })
   }
 
   deleteCab(body){
-    return this._http.post(env.environment.url+"/CabStatus/DisableCab",body).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/DisableCab",body).map((response)=>{
       return response.json()
     })
   }
   updateCab(body){
-    return this._http.post(env.environment.url+"/Cab/Updatecab",body).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/Updatecab",body).map((response)=>{
       return response.json();
     })
   }
   
   enableCab(body){
-    return this._http.post(env.environment.url+"/CabStatus/EnableCab",body).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/EnableCab",body).map((response)=>{
       return response.json();
     })
   }
 
   driverCab(body): Observable<any>{
-    return this._http.post(env.environment.url+"/Driver/DriverType",body);
+    return this._http.post(env.environment.url+"/VendorService/DriverType",body);
     
         }
         addcab(body): Observable<any>{
-          return this._http.post(env.environment.url+"/Add/Addcab", body);
+          return this._http.post(env.environment.url+"/VendorService/Addcab", body);
           } 
           
         sendfile(Rcert): Observable<any>{
-            return this._http.post(env.environment.url+"/Add/AddImage", Rcert);
+            return this._http.post(env.environment.url+"/VendorService/AddImage", Rcert);
             } 
         
         

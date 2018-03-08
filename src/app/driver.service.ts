@@ -14,39 +14,39 @@ export class DriverService {
     getDrivers():Observable<any>{
         
         var data;
-        return this._http.post(env.environment.url+'/Driver/DriverDetails','').map((response)=>{
+        return this._http.post(env.environment.url+'/VendorService/DriverDetails','').map((response)=>{
           return response.json()
         })
         
       }
 
       searchDriver(body){
-        return this._http.post(env.environment.url+"/Search/SearchDriver",body).map((response)=>{
+        return this._http.post(env.environment.url+"/VendorService/SearchDriver",body).map((response)=>{
       return response.json()
     })
   }   
 
   deleteDriver(body){
-    return this._http.post(env.environment.url+"/DriverStatus/DisableDriver",body).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/DisableDriver",body).map((response)=>{
       return response.json()
     })
   }
   
   enableDriver(body){
-    return this._http.post(env.environment.url+"/DriverStatus/EnableDriver",body).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/EnableDriver",body).map((response)=>{
       return response.json();
     })
   }
   adddriver(body): Observable<any>{
-    return this._http.post(env.environment.url+"/Add/AddDriver", body);
+    return this._http.post(env.environment.url+"/VendorService/AddDriver", body);
     }
 
   sendfile(file_upload): Observable<any>{
-      return this._http.post(env.environment.url+"/Add/AddImage", file_upload);
+      return this._http.post(env.environment.url+"/VendorService/AddImage", file_upload);
       }  
 
       updatedriver(body){
-        return this._http.post(env.environment.url+"/Driver/UpdateDriver",body).map((response)=>{
+        return this._http.post(env.environment.url+"/VendorService/UpdateDriver",body).map((response)=>{
           return response.json();
         })
       }

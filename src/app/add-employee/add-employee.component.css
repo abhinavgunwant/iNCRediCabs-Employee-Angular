@@ -12,13 +12,13 @@ input.form-control{
 }
 
 #employee-form{
-    border-left: #dddddd 1px solid;
-    border-right: #dddddd 1px solid;
+    /* border-left: #dddddd 1px solid;
+    border-right: #dddddd 1px solid; */
     padding: 0px 20px;
     height: 550px;
     /* width: 900px; */
-    overflow-y: auto;
-    overflow-x: hidden;
+    /* overflow-y: auto;
+    overflow-x: hidden; */
 }
 
 legend{

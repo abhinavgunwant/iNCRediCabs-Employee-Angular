@@ -17,7 +17,7 @@ export class VendorService {
     let body=[{"name":"rishabh","gender":"male","age":"30"},
               {"name":"sonia","gender":"female","age":"40"}];
     debugger;
-    return this._http.post(env.environment.url+"/Vendor/VendorDetails",'').map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/VendorDetails",'').map((response)=>{
       return response.json()
       
     })
@@ -25,28 +25,28 @@ export class VendorService {
   }
   searchVendor(body){
     
-    return this._http.post(env.environment.url+"/Search/SearchVendor",body).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/SearchVendor",body).map((response)=>{
       return response.json()
     })
   }
   deleteVendor(body){
-    return this._http.post(env.environment.url+"/Status/DisableVendor",body).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/DisableVendor",body).map((response)=>{
       return response.json()
     })
   }
   addVendor(body): Observable<any>{
    
     
-    return this._http.post(env.environment.url+"/Add/AddVendor", body);
+    return this._http.post(env.environment.url+"/VendorService/AddVendor", body);
   }
 
   updateVendor(vendor){
-    return this._http.post(env.environment.url+"/Update/UpdateVendor",JSON.stringify(vendor)).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/UpdateVendor",JSON.stringify(vendor)).map((response)=>{
       return response.json()
     })
   }
   enableVendor(body){
-    return this._http.post(env.environment.url+"/Status/EnableVendor",body).map((response)=>{
+    return this._http.post(env.environment.url+"/VendorService/EnableVendor",body).map((response)=>{
       return response.json();
     })
   }
