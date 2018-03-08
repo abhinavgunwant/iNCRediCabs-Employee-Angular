@@ -55,13 +55,7 @@
         <!-- Reports Menu -->
         <div id="reports_menu" *ngIf="reports">
           <div class="navbar-brand">Reports</div>
-          <ul class="nav navbar-nav">
-            <li>
-              <a routerLink="/unscheduledRequest">
-                <span class="glyphicon glyphicon-exclamation-sign"></span>
-                Request
-              </a>
-            </li>
+          <ul class="nav navbar-nav">            
             <li>
               <a (click)="downloadRequestExcel()">
                 <span class="glyphicon glyphicon-download-alt"></span>
@@ -72,6 +66,14 @@
         </div>
       </td>
       <td class="col-lg-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a routerLink="/unscheduledRequest">
+              <span class="glyphicon glyphicon-exclamation-sign"></span>
+              Request
+            </a>
+          </li>
+        </ul>
         <ul class="nav navbar-nav pull-right">
           <li>
             <a routerLink="/logout">

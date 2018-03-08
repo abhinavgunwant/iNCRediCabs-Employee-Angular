@@ -20,7 +20,7 @@ export class ForgotPasswordChangeEmployeeComponent implements OnInit {
   message = "";
   tokenValid = false;
   invalidTokenError = true;
-  showLoading = false;
+  showLoading = true;
 
   formTest = {
     char8: false,

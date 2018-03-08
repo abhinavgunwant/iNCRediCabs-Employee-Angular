@@ -40,14 +40,14 @@ export class UnscheduledRequestService {
     
   }
 
-  doAllocateRequest(requestID){
+  doAllocateRequest(requestID): Observable<any>{
     console.log("in service"+requestID);
 
     return this.apiService.callApiService({
       requestType: REQUEST_TYPE_POST,
       url: `${environment.allocateRequest}`,
       headers: this.headers,
-      body: JSON.stringify(requestID),
+      body: "{Allocate:'"+requestID+"'}",
       shouldBlock: true
   });
 

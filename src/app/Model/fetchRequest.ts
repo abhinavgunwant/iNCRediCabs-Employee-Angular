@@ -1,5 +1,7 @@
 export class FetchRequest {
 
-    constructor(public Allocated?: number){}
+    constructor(
+        public Allocated?: number
+    ){}
 
 }

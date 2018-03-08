@@ -49,6 +49,7 @@ import { ReportComponent } from './report/report.component';
 import { HeaderReportlistComponent } from './header-reportlist/header-reportlist.component';
 import { SetPasswordEmployeeComponent } from './set-password-employee/set-password-employee.component';
 import { ForgotPasswordChangeEmployeeComponent } from './forgot-password-change-employee/forgot-password-change-employee.component';
+import { ReportService } from './Services/reportservice';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { ForgotPasswordChangeEmployeeComponent } from './forgot-password-change-
     LoginService,
     EmployeeData,
     EmployeeService,
+    ReportService,
     UnscheduledRequestService,
     UserCredService,
     Location,

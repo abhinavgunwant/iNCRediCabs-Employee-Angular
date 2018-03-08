@@ -40,5 +40,8 @@ export const environment = {
   accSetupSetPasswordUrl: "http://localhost:8080/NCAB/EmployeeService/new-acc-setup/set-password",
   verifyPwdTokenUrl: "http://localhost:8080/NCAB/EmployeeService/verify-pwd-token",
   getrequestUrl: "http://localhost:8080/NCAB/RequestService/getrequest",
-  allocateRequest: "http://localhost:8080/NCAB/RequestService/onApproved"
+  allocateRequest: "http://localhost:8080/NCAB/RequestService/onApproved",
+  employeeRequest: "http://localhost:8080/NCAB/ReportService/employeereport",
+  managerUrl:"http://localhost:8080/NCAB/ReportService/managerreport",
+  vendorUrl:"http://localhost:8080/NCAB/ReportService/vendorreport",
 };

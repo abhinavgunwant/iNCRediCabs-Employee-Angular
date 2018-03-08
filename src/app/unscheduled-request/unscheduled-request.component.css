@@ -26,3 +26,12 @@
 .vendor-details-panel{
   display: none;
 }
+
+#loader_gif{
+    width: 70px;
+    height: 70px;
+}
+
+.loading_gif{
+  text-align: center;
+}

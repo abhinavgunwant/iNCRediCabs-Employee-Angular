@@ -20,30 +20,34 @@ export class UnscheduledRequestComponent implements OnInit {
   public requests: RequestModel;
   public showReqArr = [];
   public defaultRequest = "Pending";
-
+  public loader = true;
 
   constructor(public unscheduledRequestService: UnscheduledRequestService) {
     // console.log("constructor"); 
-    this.requests= new RequestModel();
+    this.requests = new RequestModel();
   }
 
   ngOnInit() {
-     
-     this.unscheduledRequestService.getAllUnscheduledRequest(this.defaultRequest).subscribe(
+
+    this.unscheduledRequestService.getAllUnscheduledRequest(this.defaultRequest).subscribe(
       (data) => {
-          this.requests=data;
-          // console.log(this.requests);
+        this.loader = false;
+        this.requests = data;
+        this.initShowDetails(this.requests);
+        // console.log(this.requests);
       });
-    this.initShowDetails(this.requests);
-    
-    //  console.log("ngInit");
-    
   }
 
-  allocateRequest(requestID){
- 
-  this.unscheduledRequestService.doAllocateRequest(requestID);
-    
+  allocateRequest(requestID) {
+    this.loader = true;
+
+    this.unscheduledRequestService.doAllocateRequest(requestID).subscribe(
+      (data) => {
+        this.loader = false;
+        this.requests = data;
+        this.initShowDetails(this.requests);
+      });
+
 
   }
 
@@ -56,19 +60,20 @@ export class UnscheduledRequestComponent implements OnInit {
       }
     });
     console.log(downloadReqArr);
-   
+
     this.unscheduledRequestService.downloadExcel();
   }
 
   search() {
     // console.log(this.defaultRequest);
+    this.loader = true;
     this.unscheduledRequestService.getAllUnscheduledRequest(this.defaultRequest).subscribe(
       (data) => {
-          // console.log(data);
-          this.requests=data;
-          // console.log(this.requests);
+        this.loader = false;
+        this.requests = data;
+        this.initShowDetails(this.requests);
+        // console.log(this.requests);
       });
-    this.initShowDetails(this.requests);
   }
 
   toggleSelectAll() {
