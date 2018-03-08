@@ -50,6 +50,31 @@ import { HeaderReportlistComponent } from './header-reportlist/header-reportlist
 import { SetPasswordEmployeeComponent } from './set-password-employee/set-password-employee.component';
 import { ForgotPasswordChangeEmployeeComponent } from './forgot-password-change-employee/forgot-password-change-employee.component';
 import { ReportService } from './Services/reportservice';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
+import { ViewVendorComponent } from './view-vendor/view-vendor.component';
+import { AddVendorComponent } from './add-vendor/add-vendor.component';
+import { VendorData } from './vendor-list/vendorData';
+import { VendorService } from './vendor.service';
+import { HeaderListComponent } from './header-list/header-list.component';
+import { UpdateVendorComponent } from './update-vendor/update-vendor.component';
+import { DatePipe } from '@angular/common';
+// import { ViewCabComponent } from './view-cab/view-cab.component';
+// import { CabListComponent } from './cab-list/cab-list.component';
+// import { CabData } from './view-cab/cabData';
+// import { CabService } from './cab.service'
+import { CabListComponent } from './cab-list/cab-list.component';
+import { ViewCabComponent } from './view-cab/view-cab.component';
+import { DriverListComponent } from './driver-list/driver-list.component';
+import { ViewDriverComponent } from './view-driver/view-driver.component';
+import { CabData } from './cab-list/cabData';
+import { CabService } from './cab.service';
+import { CabUpdateComponent } from './cab-update/cab-update.component';
+import { AddCabComponent } from './add-cab/add-cab.component';
+import { AddDriverComponent } from './add-driver/add-driver.component';
+import { DriverService } from './driver.service';
+import { DriverUpdateComponent } from './driver-update/driver-update.component';
+import { DriverData } from './driver-list/driverData';
+
 
 @NgModule({
   declarations: [
@@ -84,7 +109,21 @@ import { ReportService } from './Services/reportservice';
     AddRouteComponent,
     EmployeditComponent,
     EditRouteComponent,
-    ForgotPasswordChangeEmployeeComponent
+    ForgotPasswordChangeEmployeeComponent,
+    VendorListComponent,
+    ViewVendorComponent,
+    AddVendorComponent,
+    HeaderListComponent,
+    UpdateVendorComponent,
+    CabListComponent,
+    ViewCabComponent,
+    DriverListComponent,
+    ViewDriverComponent,
+    CabUpdateComponent,
+    AddCabComponent,
+    AddDriverComponent,
+    DriverUpdateComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -106,7 +145,15 @@ import { ReportService } from './Services/reportservice';
     UnscheduledRequestService,
     UserCredService,
     Location,
-    RosterService
+    RosterService,
+   VendorData,
+   VendorService,
+   DatePipe,
+   CabData,
+   CabService,
+   DriverService,
+   DriverData
+
   ],
   bootstrap: [AppComponent]
 })

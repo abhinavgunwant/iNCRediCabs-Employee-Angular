@@ -44,4 +44,5 @@ export const environment = {
   employeeRequest: "http://localhost:8080/NCAB/ReportService/employeereport",
   managerUrl:"http://localhost:8080/NCAB/ReportService/managerreport",
   vendorUrl:"http://localhost:8080/NCAB/ReportService/vendorreport",
+  url: "http://localhost:8080/NCAB"
 };

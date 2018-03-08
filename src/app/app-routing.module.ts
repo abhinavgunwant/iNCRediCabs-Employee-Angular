@@ -24,6 +24,19 @@ import { RosterEmpDetailComponent } from './roster-emp-detail/roster-emp-detail.
 import { AddRouteComponent } from './add-route/add-route.component';
 import { EmployeditComponent } from './employedit/employedit.component';
 import { EditRouteComponent } from './edit-route/edit-route.component';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
+import { ViewVendorComponent } from './view-vendor/view-vendor.component';
+import { AddVendorComponent } from './add-vendor/add-vendor.component';
+import { UpdateVendorComponent } from './update-vendor/update-vendor.component';
+import { CabListComponent } from './cab-list/cab-list.component';
+import { ViewCabComponent } from './view-cab/view-cab.component';
+import { DriverListComponent } from './driver-list/driver-list.component';
+import { ViewDriverComponent } from './view-driver/view-driver.component';
+import { CabUpdateComponent } from './cab-update/cab-update.component';
+import { AddDriverComponent } from './add-driver/add-driver.component';
+import { AddCabComponent } from './add-cab/add-cab.component';
+import { DriverUpdateComponent } from './driver-update/driver-update.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login',   pathMatch: 'full' },
@@ -55,7 +68,20 @@ const routes: Routes = [
   { path: 'roster/chl',               component:RosterEmpDetailComponent},
   { path: 'roster/addRoute',          component:AddRouteComponent},
   { path: 'roster/editemp',           component:EmployeditComponent},
-  { path: 'roster/editroute',         component:EditRouteComponent}
+  { path: 'roster/editroute',         component:EditRouteComponent},
+  { path: 'vendor-list', component:VendorListComponent},
+  { path: 'view-vendor', component:ViewVendorComponent},
+  { path: 'add-vendor', component:AddVendorComponent},
+  { path: 'update-vendor',component:UpdateVendorComponent},
+  { path: 'cab-list', component:CabListComponent},
+  { path: 'view-cab', component:ViewCabComponent},
+  { path: 'driver-list', component:DriverListComponent},
+  { path: 'view-driver', component:ViewDriverComponent},
+  {path: 'cab-update',component:CabUpdateComponent},
+  {path: 'add-driver', component:AddDriverComponent},
+  {path: 'add-cab', component:AddCabComponent},
+  {path: 'driver-list', component:DriverListComponent},
+  {path: 'driver-update', component:DriverUpdateComponent}
 ];
 
 @NgModule({
