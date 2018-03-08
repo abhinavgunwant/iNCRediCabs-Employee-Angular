@@ -211,7 +211,7 @@ export class UnscheduledFormComponent implements OnInit {
       "vendor":f.value.VendorName
     };
     jsonstring.push(jsonrespone);
-   this.router.navigateByUrl('/go');
+   this.router.navigateByUrl('/roster/go');
    }
     console.log(JSON.stringify(jsonstring));
     this.service.postunscheduledroute(jsonstring)
@@ -226,7 +226,7 @@ export class UnscheduledFormComponent implements OnInit {
   }
   close(){
     alert("Successful");
-      this.router.navigateByUrl('/go');  
+      this.router.navigateByUrl('/roster/go');  
     }
   }
   

@@ -225,6 +225,6 @@ submit(f,VendorName){
 }
 close(){
   alert("Successful");
-    this.router.navigateByUrl('/go');  
+    this.router.navigateByUrl('/roster/go');  
   }
 }
