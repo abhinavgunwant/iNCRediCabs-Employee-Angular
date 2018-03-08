@@ -40,6 +40,8 @@ RemoveFilter(){
   this.bind_shift_i="";
   this.ngOnInit();
 }
+public isShow:boolean=false;
+  public tf:boolean=false;
  public upload_name:string;
  loadUploadMenu:boolean;
   public postcontent=[];
@@ -62,6 +64,11 @@ RemoveFilter(){
   public cbox:boolean=false;
   public checkcab;
   public upload_spinner:boolean=false;
+  public preventSimpleClick:boolean;
+  public timer;
+  public cnbr:string;
+  public checkingclick:boolean;
+  public str:string;
     ngOnInit() {
       this.uploadValue=this.ro.snapshot.params['foo'];
       console.log(this.uploadValue);
@@ -70,6 +77,45 @@ RemoveFilter(){
       //  this.showTime();
 this.showfilter=false;
 this.spinner=true;
+  }
+  showme(ras):void{
+  
+    this.timer = 0;
+    this.preventSimpleClick = false;
+    let delay = 200;
+  
+    this.timer = setTimeout(() => {
+      if(!this.preventSimpleClick){
+     
+        this.checkingclick=true;
+        this.str=ras;
+      
+        if(this.cnbr==ras){
+          this.str="haha";
+          this.cnbr="in";
+          // this.ngOnInit();
+          // this.str=ras;
+  
+        
+          
+  
+        }
+        if(this.cnbr=="in"){
+          this.cnbr="yoyo";
+        }
+        else{
+        this.cnbr=ras;
+        }
+        
+        
+        //whatever you want with simple click go here
+        console.log("simple click");
+      }
+    }, delay);
+  
+  }
+  show_filter_down(){
+      this.tf=true;
   }
 
 showT(){
@@ -87,6 +133,10 @@ showT(){
     this.max=0;
     this._http1.postJsonData(this.bind_cab_no,this.bind_qlid,this.bind_shift_i,this.bind_emp_name).subscribe( 
       data => {this.postcontent=JSON.parse(JSON.stringify(data));
+        if(this.postcontent.length==0){
+       
+        }
+        else{
           for(let i:number=0;i<=this.postcontent.length;i++){
             this.a1=this.postcontent[i].Cab_number;      
             if(this.cab_arr.length == 0){
@@ -112,7 +162,7 @@ showT(){
              }
              this.spinner=false;
             } 
-         
+          }
           // this.Max_arr.sort(this.sortFunction);
           for(let r in this.Max_arr){
             console.log(this.Max_arr[r]);
@@ -124,7 +174,7 @@ showT(){
          alert("No Such Records Found !!! Try again !!!");
         return;
         },
-        error => alert("No Such Record Found....Bye....Bye"),
+        error => alert("No Such Record Found...."),
       () => console.log("Finished")
      );  
      this.showTime();
