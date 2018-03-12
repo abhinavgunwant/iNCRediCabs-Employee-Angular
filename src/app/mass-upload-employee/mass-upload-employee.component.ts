@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mass-upload-employee.component.css']
 })
 export class MassUploadEmployeeComponent implements OnInit {
+  module = "employee";
 
   constructor() { }
 

@@ -36,6 +36,7 @@ import { CabUpdateComponent } from './cab-update/cab-update.component';
 import { AddDriverComponent } from './add-driver/add-driver.component';
 import { AddCabComponent } from './add-cab/add-cab.component';
 import { DriverUpdateComponent } from './driver-update/driver-update.component';
+import { MassUploadEmployeeComponent } from './mass-upload-employee/mass-upload-employee.component';
 
 
 const routes: Routes = [
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'employee/view',            component: ViewEmployeeComponent},
   { path: 'employee',                 component: EmployeeComponent },
   { path: 'employee/add',             component: AddEmployeeComponent },
+  { path: 'employee/mass-upload',     component: MassUploadEmployeeComponent },
   { path: 'employee/edit',            component: EditEmployeeComponent},
   { path: 'logout',                   component: LogoutComponent },
   { path: 'unscheduledRequest',       component: UnscheduledRequestComponent },
