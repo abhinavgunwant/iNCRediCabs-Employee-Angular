@@ -17,6 +17,7 @@ declare var $ :any;
 
 export class ViewEmployeeComponent implements OnInit {
   module = "employee";
+  navLocation = "/ View Employee";
   filter: Filter;
   employeeArr: Employee[];
   showLoader = true;

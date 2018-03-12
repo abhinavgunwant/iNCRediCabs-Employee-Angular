@@ -12,6 +12,7 @@ import { Manager } from '../Model/manager';
 })
 export class AddEmployeeComponent implements OnInit {
   module = "EMPLOYEE";
+  navLocation = "/ Add Employee";
   emp: Employee;
   showError = false;
   showSuccess = false;

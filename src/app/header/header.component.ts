@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   public obj =new UnscheduledRequestComponent(this.unscheduledRequestService);
   @Output() public childevent =new EventEmitter(); 
   @Input() module:string;
+  @Input() navLocation: string;
 
   
   constructor(private _router: Router,
@@ -37,11 +38,11 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.headerUpdate();
-    this.router.events.subscribe((e) => {
-      if (e instanceof NavigationEnd) {
-        this.headerUpdate();
-      }
-    });
+    // this.router.events.subscribe((e) => {
+    //   if (e instanceof NavigationEnd) {
+    //     this.headerUpdate();
+    //   }
+    // });
 
     //// TODO: uncomment below lines after session issues are resolved!
         
@@ -53,7 +54,6 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   
   }
 
-
   downloadRequestExcel(){
     this.obj.downloadRequestExcel();
   }
@@ -64,60 +64,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     this.childevent.emit(this.uploadValue);
   }
 
-
   headerUpdate(){
-  //   let url = this.router.url;
-    
-  //   //// Dash
-  //   let empRes = url.match(/\/dash.*/gi);
-  //   if(empRes != null){
-  //     this.employee = false;
-  //     this.roster = false;
-  //     this.vendor = false;
-  //     this.reports = false;
-  //     return;
-  //   }
-    
-  //   //// Employee
-  //   empRes = url.match(/\/employee.*/gi);
-  //   if(empRes != null){
-  //     this.employee = true;
-  //     this.roster = false;
-  //     this.vendor = false;
-  //     this.reports = false;
-  //     return;
-  //   }
-
-  //   //// Roster
-  //   empRes = url.match(/\/roster.*/i);
-  //   if(empRes != null){
-  //     this.employee = false;
-  //     this.roster = true;
-  //     this.vendor = false;
-  //     this.reports = false;
-  //     return;
-  //   }    
-
-  //   //// Vendor
-  //   empRes = url.match(/\/vendor.*/i);
-  //   if(empRes != null){
-  //     this.employee = false;
-  //     this.roster = false;
-  //     this.vendor = true;
-  //     this.reports = false;
-  //     return;
-  //   }
-
-  //   //// Reports
-  //   empRes = url.match(/\/report.*/i);
-  //   if(empRes != null){
-  //     this.employee = false;
-  //     this.roster = false;
-  //     this.vendor = false;
-  //     this.reports = true;
-  //     return;
-  //   }
-
     if(this.module != null && this.module != undefined){
       switch(this.module.toUpperCase()){
         case 'EMPLOYEE':
