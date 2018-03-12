@@ -1,4 +1,5 @@
-<app-header></app-header>
+<app-header [module]="module"></app-header>
+
 <!-- panel default-panel -->
 <div id="filter-panel" class="panel default-panel">
   <div class="panel-body">
@@ -43,14 +44,10 @@
   </div>
 </div>
 <div id="view-employee" class="row-sm-10 row-lg-10">
-  <!-- <div *ngIf="noResultError" class="alert alert-danger">
+  <div *ngIf="noResultError" class="alert alert-danger">
     <strong>Error!</strong> No response returned corresponding to your filter.
-  </div> -->
-  <div *ngIf="showLoading" class="loader-animation">
-    <div class="loader-animation-text text-center">
-      Loading...
-    </div>
   </div>
+  <app-loader-anim [showLoader]="showLoader" [loaderText]="loaderText"></app-loader-anim>
   <div *ngIf="arr">
     <div *ngFor="let emp of arr;let i = index">
       <div class="panel panel-info">

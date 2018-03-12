@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { EmployeeData } from '../view-employee/employeeData';
-import { EmployeeService } from '../Services/employee.service';
-import { Filter } from '../Model/filter';
-import { Employee } from '../Model/employee';
-import { Location } from '@angular/common';
-import { Manager } from '../Model/manager';
+import { Component, OnInit }  from '@angular/core';
+import { EmployeeData }       from '../view-employee/employeeData';
+import { EmployeeService }    from '../Services/employee.service';
+import { Filter }             from '../Model/filter';
+import { Employee }           from '../Model/employee';
+import { Location }           from '@angular/common';
+import { Manager }            from '../Model/manager';
 
 @Component({
   selector: 'app-edit-employee',
@@ -13,6 +13,7 @@ import { Manager } from '../Model/manager';
 })
 
 export class EditEmployeeComponent implements OnInit {
+  module = "EMPLOYEE";
   emp: Employee;
   editDetails = true;
   noResultError = true;
