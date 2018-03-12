@@ -14,6 +14,7 @@ declare var $:any;
 })
 
 export class ViewEmployeeDetailsComponent implements OnInit {
+  module = "employee";
   public emp: Employee;
   showDeactivatePopup = false;
   error=false;

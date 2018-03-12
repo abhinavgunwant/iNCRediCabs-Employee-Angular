@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Router} from '@angular/router';
-import { RouterModule, Routes} from '@angular/router';
-import { EmployeeData } from './employeeData';
-import { Filter } from '../Model/filter';
-import { EmployeeService } from '../Services/employee.service';
-import { Employee } from '../Model/employee';
+import { Router }                   from '@angular/router';
+import { RouterModule, Routes}      from '@angular/router';
+import { EmployeeData }             from './employeeData';
+import { Filter }                   from '../Model/filter';
+import { EmployeeService }          from '../Services/employee.service';
+import { Employee }                 from '../Model/employee';
 
 declare var jquery:any;
 declare var $ :any;
@@ -16,15 +16,16 @@ declare var $ :any;
 })
 
 export class ViewEmployeeComponent implements OnInit {
+  module = "employee";
   filter: Filter;
   employeeArr: Employee[];
-  showLoading = true;
-  noResultError = true;
+  showLoader = true;
+  loaderText = "Loading...";
+  noResultError = false;
   empShowQuickDetails;
   optionsRequired = false;
   options;
   rolesCache = null;
-
   arr:any=[];
 
   constructor(
@@ -40,7 +41,8 @@ export class ViewEmployeeComponent implements OnInit {
   public selectedItem: Employee;
 
   ngOnInit() {
-    this.onFilterGo();
+    // this.onFilterGo();
+
     // this.employeeService.currentEmp.subscribe((data) => {
     //   this.arr = data;
     // });
@@ -81,7 +83,7 @@ export class ViewEmployeeComponent implements OnInit {
         this.noResultError = true;
       }else{
         this.noResultError = false;
-        this.showLoading = false;
+        this.showLoader = false;
       }
       this.empShowQuickDetails = [];
       for(var i=0; i<this.arr.length; ++i){
@@ -94,7 +96,6 @@ export class ViewEmployeeComponent implements OnInit {
   onPanelQuickButtonMouseEnter(tgt){
     let ttParent;
     let tt;
-    let childId;
     let leftMargin;
     let id;
     
@@ -125,8 +126,7 @@ export class ViewEmployeeComponent implements OnInit {
       }
 
       //// Finally, set the margins....
-      $(id).css('margin', '5px 0px 0px '+ leftMargin + 'px');
-      $(id).attr('marginset', 'true');
+      $(id).css('margin', '5px 0px 0px '+ leftMargin + 'px').attr('marginset', 'true');
     }
 
     $(id).css('display', 'inherit');
@@ -151,11 +151,11 @@ export class ViewEmployeeComponent implements OnInit {
           this.rolesCache = [
             {value: 1, text: data[1]},
             {value: 2, text: data[2]},
-            {value: 4, text: data[3]},
-            {value: 5, text: data[4]},
+            {value: 3, text: data[3]},
+            {value: 4, text: data[4]},
             {value: 5, text: data[5]}
           ];
-        this.options = this.rolesCache;
+          this.options = this.rolesCache;
         });
       }else{
         this.options = this.rolesCache;
