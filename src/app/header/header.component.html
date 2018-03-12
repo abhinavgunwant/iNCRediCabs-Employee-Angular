@@ -84,7 +84,6 @@
         </div>
         <!-- Roster Menu -->
         <div id="roster_menu" *ngIf="roster">
-          <div class="navbar-brand"><a routerLink="/roster/go">Roster</a></div>
           <ul class="nav navbar-nav ">
             <li><a routerLink="/roster/addRoute">Add Route</a></li>
             <li><a routerLink="/roster/editroute">Edit Route</a></li>
@@ -93,7 +92,6 @@
         </div>
         <!-- Vendor Menu -->
         <div id="vendor_menu" *ngIf="vendor">
-          <div class="navbar-brand">Vendor</div>
           <ul class="nav navbar-nav">
             <li><a href="#">Add Vendor</a></li>
             <li><a href="#">View / Edit Vendor</a></li>
@@ -101,7 +99,6 @@
         </div>
         <!-- Reports Menu -->
         <div id="reports_menu" *ngIf="reports">
-          <div class="navbar-brand">Reports</div>
           <ul class="nav navbar-nav">            
             <li>
               <a (click)="downloadRequestExcel()">
