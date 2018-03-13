@@ -42,7 +42,7 @@ export class ViewEmployeeComponent implements OnInit {
   public selectedItem: Employee;
 
   ngOnInit() {
-    // this.onFilterGo();
+     this.onFilterGo();
 
     // this.employeeService.currentEmp.subscribe((data) => {
     //   this.arr = data;
