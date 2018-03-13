@@ -19,6 +19,7 @@ export class ViewEmployeeComponent implements OnInit {
   module = "employee";
   navLocation = "/ View Employee";
   filter: Filter;
+  showFilterPanel = false;
   employeeArr: Employee[];
   showLoader = true;
   loaderText = "Loading...";
@@ -42,19 +43,24 @@ export class ViewEmployeeComponent implements OnInit {
   public selectedItem: Employee;
 
   ngOnInit() {
+<<<<<<< HEAD
      this.onFilterGo();
 
+=======
+    this.onFilterGo();
+>>>>>>> e27064dacc6d0c156b4db3a6667fe9e8f532c88c
     // this.employeeService.currentEmp.subscribe((data) => {
     //   this.arr = data;
     // });
     // console.log(this.empShowQuickDetails);
+    $('#filter-panel .panel-body').hide();
   }
 
   viewDetails(emp,selectedIndex){
     this.selectedItem = emp;
     this._employeeData.setItem(this.selectedItem);
     this.employeeService.giveEmployee(emp);
-    this.router.navigate(['employee/view/details']);
+    this.router.navigate(['employee/view/details/'+emp.empQlid]);
   }
 
   showQuickDetails(index){
@@ -91,6 +97,14 @@ export class ViewEmployeeComponent implements OnInit {
         this.empShowQuickDetails.push(false);
       }
     });
+  }
+
+  onFilterPanelChevronMouseEnter(tgt){
+    $('.filter-panel-heading-button .tooltip-text').show();
+  }
+
+  onFilterPanelChevronMouseLeave(tgt){
+    $('.filter-panel-heading-button .tooltip-text').hide();
   }
 
   //// Called when user clicks on one of the quick display buttons
@@ -137,10 +151,6 @@ export class ViewEmployeeComponent implements OnInit {
     $('.tooltip-text').css('display', 'none');
   }
 
-  onClick(){
-    console.log('!!');
-  }
-
   onFilterChange(){
     if(this.filter.filterType.toUpperCase() == 'ROLESID'){
       //// If the rolesCache is null, initialize it with all roles,
@@ -171,6 +181,16 @@ export class ViewEmployeeComponent implements OnInit {
     }else{
       this.filter.filterValue = '';
       this.optionsRequired = false;      
+    }
+  }
+
+  filterPanelToggle(){
+    if(this.showFilterPanel){
+      $('#filter-panel .panel-body').slideUp();
+      this.showFilterPanel = false;
+    }else{
+      $('#filter-panel .panel-body').slideDown();
+      this.showFilterPanel = true;
     }
   }
 }
